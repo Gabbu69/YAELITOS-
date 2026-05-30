@@ -1,5 +1,6 @@
 const SITE_CONTACT = {
-  phoneDisplay: "Replace with phone number",
+  // Staff: replace these values before launch.
+  phoneDisplay: "Phone number coming soon",
   phoneHref: "tel:+630000000000",
   messengerUrl: "https://m.me/yaelitosrestaurant",
   email: "reservations@yaelitos.example",
@@ -84,7 +85,7 @@ function initInquiryForms() {
       const subject = encodeURIComponent(`${type} - Yaelitos Restaurant`);
       const body = encodeURIComponent(message);
       if (status) {
-        status.textContent = "Your inquiry is ready. Opening your email app now. Staff can replace the placeholder email, Messenger link, and phone number in assets/site.js.";
+        status.textContent = "Your inquiry is ready. Opening your email app now. You may also message Yaelitos on Messenger for faster confirmation.";
         status.classList.add("show");
       }
       window.location.href = `mailto:${SITE_CONTACT.email}?subject=${subject}&body=${body}`;

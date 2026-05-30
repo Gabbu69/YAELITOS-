@@ -6,6 +6,8 @@ Staff update notes:
 - Contact placeholders are in assets/site.js.
 - Replace phoneDisplay, phoneHref, messengerUrl, and email with official details.
 - Update operating hours in contact.html.
+- Update the official Google Maps link if available.
+- Confirm final menu prices and availability.
 - Add or replace menu items in menu.html.
 - Replace gallery images by copying new photos into assets/media and updating gallery.html.
 

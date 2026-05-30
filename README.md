@@ -12,6 +12,15 @@ Premium static website for Yaelitos Restaurant, promoting dine-in service, the V
 - `gallery.html` - Photo gallery and celebration gallery
 - `contact.html` - Contact, map, reservation form, VIP inquiry form, and catering inquiry form
 
+## Update These Before Launch
+
+- Phone number
+- Messenger link
+- Email address for inquiry forms
+- Final operating hours
+- Official Google Maps link
+- Final menu prices and availability
+
 ## Staff Edits
 
 Most common updates are simple text edits:
@@ -21,16 +30,6 @@ Most common updates are simple text edits:
 - Menu items and prices: `menu.html`
 - Gallery photos: `gallery.html` and `assets/media/`
 - Colors and layout: `assets/styles.css`
-
-## Current Placeholders
-
-Replace these before publishing:
-
-- Phone number
-- Messenger URL
-- Email address used by the inquiry forms
-- Official Google Maps link if available
-- Final operating hours
 
 ## What Is Intentionally Not Included
 
