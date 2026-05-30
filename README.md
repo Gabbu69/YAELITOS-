@@ -12,20 +12,20 @@ Premium static website for Yaelitos Restaurant, promoting dine-in service, the V
 - `gallery.html` - Photo gallery and celebration gallery
 - `contact.html` - Contact, map, reservation form, VIP inquiry form, and catering inquiry form
 
-## Update These Before Launch
+## Current Business Details
 
-- Phone number
-- Messenger link
-- Email address for inquiry forms
-- Final operating hours
-- Official Google Maps link
-- Final menu prices and availability
+- Name: Yaelitos Restaurant
+- Tagline: Your Second Home
+- Location: Rizal St., Poblacion A, M'lang, North Cotabato
+- Contact number: 0912-059-3992
+- Open: Monday-Sunday, 11AM-8PM
+- Category: Filipino comfort food, VIP Room, catering, private gatherings
 
 ## Staff Edits
 
 Most common updates are simple text edits:
 
-- Contact details: `assets/site.js`
+- Contact details and form routing: `assets/site.js`
 - Operating hours: `contact.html`
 - Menu items and prices: `menu.html`
 - Gallery photos: `gallery.html` and `assets/media/`
@@ -33,7 +33,7 @@ Most common updates are simple text edits:
 
 ## What Is Intentionally Not Included
 
-This website does not include online ordering, payments, accounts, admin tools, POS, inventory, or chatbot features.
+This website does not include online ordering, online payment, accounts, admin tools, POS, inventory, a mobile app, or chatbot features.
 
 ## Local Preview
 

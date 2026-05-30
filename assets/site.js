@@ -1,9 +1,9 @@
 const SITE_CONTACT = {
-  // Staff: replace these values before launch.
-  phoneDisplay: "Phone number coming soon",
-  phoneHref: "tel:+630000000000",
+  // Contact settings used by buttons and inquiry forms.
+  phoneDisplay: "0912-059-3992",
+  phoneHref: "tel:+639120593992",
+  smsHref: "sms:+639120593992",
   messengerUrl: "https://m.me/yaelitosrestaurant",
-  email: "reservations@yaelitos.example",
   address: "Rizal St., Poblacion A, M'lang, North Cotabato"
 };
 
@@ -54,6 +54,9 @@ function initContactLinks() {
   document.querySelectorAll("[data-contact='phone']").forEach((link) => {
     link.href = SITE_CONTACT.phoneHref;
   });
+  document.querySelectorAll("[data-contact='sms']").forEach((link) => {
+    link.href = SITE_CONTACT.smsHref;
+  });
   document.querySelectorAll("[data-contact='messenger']").forEach((link) => {
     link.href = SITE_CONTACT.messengerUrl;
   });
@@ -82,13 +85,15 @@ function initInquiryForms() {
       const type = form.dataset.inquiryForm || "Inquiry";
       const message = formatFormMessage(form, type);
       const status = form.querySelector(".form-status");
-      const subject = encodeURIComponent(`${type} - Yaelitos Restaurant`);
       const body = encodeURIComponent(message);
       if (status) {
-        status.textContent = "Your inquiry is ready. Opening your email app now. You may also message Yaelitos on Messenger for faster confirmation.";
+        status.textContent = "Your inquiry is ready. Opening your SMS app now. You can also send the same details through Facebook Messenger.";
         status.classList.add("show");
       }
-      window.location.href = `mailto:${SITE_CONTACT.email}?subject=${subject}&body=${body}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(message).catch(() => {});
+      }
+      window.location.href = `${SITE_CONTACT.smsHref}?&body=${body}`;
       form.reset();
     });
   });

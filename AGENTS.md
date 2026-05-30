@@ -7,7 +7,7 @@ This is a static HTML/CSS/JS website. Keep it simple and staff-friendly.
 Promote Yaelitos as:
 
 - A Filipino comfort food restaurant
-- A VIP room venue
+- A VIP Room venue
 - A catering provider
 - A celebration place for birthdays, meetings, salo-salo, and family events
 
@@ -20,7 +20,7 @@ Promote Yaelitos as:
 - Do not add POS or inventory features.
 - Do not add an AI chatbot.
 - Keep the site static unless the owner explicitly requests a new stack.
-- Keep contact details easy for non-technical staff to update.
+- Keep the site customer-facing and avoid public developer or handoff copy.
 
 ## File Map
 
@@ -30,25 +30,32 @@ Promote Yaelitos as:
 - `contact.html` contains all three inquiry forms.
 - `menu.html` contains the first featured menu, based on visible supplied materials.
 
-## Important Placeholders
+## Current Business Details
 
-Update `assets/site.js`:
+- Name: Yaelitos Restaurant
+- Tagline: Your Second Home
+- Location: Rizal St., Poblacion A, M'lang, North Cotabato
+- Contact number: 0912-059-3992
+- Open: Monday-Sunday, 11AM-8PM
+- Category: Filipino comfort food, VIP Room, catering, private gatherings
+
+`assets/site.js` currently uses:
 
 ```js
 const SITE_CONTACT = {
-  phoneDisplay: "Replace with phone number",
-  phoneHref: "tel:+630000000000",
+  phoneDisplay: "0912-059-3992",
+  phoneHref: "tel:+639120593992",
+  smsHref: "sms:+639120593992",
   messengerUrl: "https://m.me/yaelitosrestaurant",
-  email: "reservations@yaelitos.example",
   address: "Rizal St., Poblacion A, M'lang, North Cotabato"
 };
 ```
 
-Update `contact.html` for final operating hours and exact map embed if the restaurant has an official Google Maps listing.
+Update the map embed in `contact.html` only if the restaurant has a more exact Google Maps listing URL.
 
 ## Form Behavior
 
-The forms are static. On submit, JavaScript validates required fields, builds a message, and opens the visitor's email app with a prepared inquiry. This avoids server setup while still being usable for staff.
+The forms are static. On submit, JavaScript validates required fields, builds a message, copies it when possible, and opens the visitor's SMS app addressed to 0912-059-3992. Visitors can also send the same details through Facebook Messenger or call directly.
 
 ## Design Notes
 

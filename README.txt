@@ -3,13 +3,12 @@ Yaelitos Restaurant Website
 Open index.html in a browser to preview the website.
 
 Staff update notes:
-- Contact placeholders are in assets/site.js.
-- Replace phoneDisplay, phoneHref, messengerUrl, and email with official details.
-- Update operating hours in contact.html.
-- Update the official Google Maps link if available.
-- Confirm final menu prices and availability.
-- Add or replace menu items in menu.html.
-- Replace gallery images by copying new photos into assets/media and updating gallery.html.
+- Current phone number and SMS routing are in assets/site.js.
+- Current operating hours are Monday-Sunday, 11AM-8PM.
+- Messenger link is in assets/site.js.
+- Official Google Maps embed can be refined in contact.html if a better listing URL is available.
+- Menu prices and availability can be updated in menu.html.
+- Gallery images can be replaced by copying new photos into assets/media and updating gallery.html.
 
 Included pages:
 - Home
@@ -27,4 +26,5 @@ Excluded by design:
 - Admin dashboard
 - POS system
 - Inventory system
+- Mobile app
 - AI chatbot
