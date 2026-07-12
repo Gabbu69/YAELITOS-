@@ -3,162 +3,123 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact and Reservations | Yaelitos Restaurant</title>
-  <meta name="description" content="Contact Yaelitos Restaurant at 0912-059-3992, reserve a table, inquire about VIP Room booking, ask about catering, and view the M'lang location.">
-  <meta property="og:title" content="Contact Yaelitos Restaurant">
-  <meta property="og:description" content="Reservations, VIP room booking inquiries, catering inquiries, Messenger, click-to-call, hours, and location.">
-  <meta property="og:image" content="assets/media/FB_IMG_1780126128276.jpg">
+  <meta name="theme-color" content="#173d2d">
+  <title>Visit and Book | Yaelitos M'lang</title>
+  <meta name="description" content="Find Yaelitos in M'lang, call the restaurant, or prepare a table, private-event, or group-meal inquiry for Messenger.">
+  <meta property="og:title" content="Visit and Book | Yaelitos">
+  <meta property="og:description" content="Get directions and prepare one clear Messenger-first inquiry for Yaelitos.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Gabbu69/YAELITOS-/main/assets/media/FB_IMG_1780126105313.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="index.html">Yaelitos <span>Restaurant and Events Space</span></a>
-      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="vip-room.html">VIP Room</a><a href="catering-events.html">Catering</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
-      </nav>
-      <div class="nav-actions"><a class="button secondary" href="#reservation">Reserve</a></div>
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Yaelitos home"><span class="brand-name" data-config="business.name">Yaelitos</span><span class="brand-tagline" data-config="business.tagline">Your Second Home</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="site-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="menu.html">Food</a><a href="private-events.html">Private Events</a><a class="active" aria-current="page" href="contact.html">Visit / Book</a></nav>
+      <a class="button button-small header-cta" data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Message us</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero short">
-      <div class="hero-media"><img src="assets/media/FB_IMG_1780126128276.jpg" alt="Yaelitos reserved private dining room"></div>
-      <div class="hero-inner reveal">
-        <p class="eyebrow">Contact Yaelitos</p>
-        <h1>Reserve, inquire, or ask about your celebration.</h1>
-        <p class="hero-copy">Reserve a table, book the VIP Room, or ask about catering through Messenger, call, or the inquiry forms below.</p>
-        <div class="hero-ctas"><a class="button" href="#reservation">Reservation Form</a><a class="button secondary" data-contact="phone" href="tel:+639120593992">Call 0912-059-3992</a><a class="button clay" data-contact="messenger" href="https://m.me/yaelitosrestaurant">Message on Facebook</a></div>
-      </div>
-    </section>
-
-    <section class="booking-section">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">How Can We Help?</p>
-          <h2>Pick the inquiry that matches your visit.</h2>
-          <p>Send the details once, then continue by SMS, call, or Facebook Messenger.</p>
+  <main id="main-content">
+    <section class="contact-hero">
+      <div class="container contact-hero-grid">
+        <div class="contact-hero-copy reveal">
+          <p class="eyebrow light">Visit / Book</p>
+          <h1>Everything you need to reach Yaelitos.</h1>
+          <p>Get directions, call the restaurant, or prepare one clear message for a table, private gathering, or group meal.</p>
+          <div class="contact-hero-actions"><a class="button button-gold" href="#inquiry">Prepare an inquiry</a><a class="text-link light-link" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a></div>
         </div>
-        <div class="booking-options">
-          <article class="booking-option reveal">
-            <h3>Table Reservation</h3>
-            <p>For dine-in visits, family meals, and casual group bookings.</p>
-            <a class="button" href="#reservation">Reserve a Table</a>
-          </article>
-          <article class="booking-option reveal">
-            <h3>VIP Room Booking</h3>
-            <p>For private salo-salo, meetings, birthdays, and special gatherings.</p>
-            <a class="button secondary" href="#vip-inquiry">Book VIP Room</a>
-          </article>
-          <article class="booking-option reveal">
-            <h3>Catering Inquiry</h3>
-            <p>For food packages, group meals, and celebration planning.</p>
-            <a class="button clay" href="#catering-inquiry">Ask About Catering</a>
-          </article>
+        <div class="contact-hero-photo reveal">
+          <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126105313-640.webp 640w, assets/media/FB_IMG_1780126105313-1280.webp 1280w" sizes="(max-width: 800px) 100vw, 45vw"><img src="assets/media/FB_IMG_1780126105313.jpg" width="1320" height="1260" alt="The warm Yaelitos dining room prepared for guests" fetchpriority="high"></picture>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container form-grid">
-        <aside class="info-panel reveal">
-          <p class="eyebrow">Visit and Contact</p>
-          <h2>Yaelitos Restaurant</h2>
-          <div class="contact-stack">
-            <div class="contact-line"><strong>Address</strong><span>Rizal St., Poblacion A, M'lang, North Cotabato</span></div>
-            <div class="contact-line"><strong>Phone</strong><span data-phone-text>0912-059-3992</span></div>
-            <div class="contact-line"><strong>Messenger</strong><a data-contact="messenger" href="https://m.me/yaelitosrestaurant">Message Yaelitos on Messenger</a></div>
-            <div class="contact-line"><strong>Hours</strong><span>Monday-Sunday, 11AM-8PM</span></div>
-          </div>
-          <div class="cta-row"><a class="button secondary" data-icon="phone" data-contact="phone" href="tel:+639120593992">Click to Call</a><a class="button" data-icon="message" data-contact="messenger" href="https://m.me/yaelitosrestaurant">Messenger</a></div>
+    <section class="contact-details-section">
+      <div class="container contact-details-grid">
+        <article class="contact-detail reveal"><span>01</span><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="text-link" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Open directions ↗</a></article>
+        <article class="contact-detail reveal"><span>02</span><h2>Call</h2><p>For quick questions or a same-day follow-up.</p><a class="text-link" data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span> ↗</a></article>
+        <article class="contact-detail reveal"><span>03</span><h2>Latest updates</h2><p>Check the official page for current food, announcements, and operating updates.</p><a class="text-link" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Visit Facebook ↗</a></article>
+      </div>
+    </section>
+
+    <section class="section inquiry-section" id="inquiry" data-inquiry>
+      <div class="container inquiry-layout">
+        <aside class="inquiry-intro reveal">
+          <p class="eyebrow">One easy inquiry</p>
+          <h2>Prepare the details before Messenger opens.</h2>
+          <p class="lead">The website turns your answers into a neat message for staff. Nothing is stored or sent automatically.</p>
+          <ol class="inquiry-steps"><li><span>1</span>Complete the short form</li><li><span>2</span>Prepare and copy your message</li><li><span>3</span>Paste it in Messenger and send</li><li><span>4</span>Wait for Yaelitos to confirm</li></ol>
+          <div class="privacy-note"><strong>Your details stay with you.</strong><p>This static website does not save customer information. Data leaves your device only when you choose Messenger, SMS, or call.</p></div>
         </aside>
-        <section class="form-panel reveal" id="reservation">
-          <p class="eyebrow">Reservation Form</p>
-          <h2>Book a Table</h2>
-          <p class="lead">Use this for regular dine-in reservations and small group meals.</p>
-          <form class="form" data-inquiry-form="Table Reservation">
-            <div class="field-grid"><label>Name<input name="name" autocomplete="name" required></label><label>Contact Number<input name="contact-number" autocomplete="tel" required></label></div>
-            <div class="field-grid"><label>Date<input name="date" type="date" required></label><label>Time<input name="time" type="time" required></label></div>
-            <div class="field-grid"><label>Number of Guests<input name="number-of-guests" type="number" min="1" required></label><label>Event Type<input name="event-type" placeholder="Dine-in, birthday, family meal" required></label></div>
-            <label>Message<textarea name="message" placeholder="Preferred table, food requests, occasion, or notes"></textarea></label>
-            <div class="form-status" role="status"></div>
-            <button class="button" type="submit">Prepare Reservation Inquiry</button>
-          </form>
-        </section>
-      </div>
-    </section>
 
-    <section class="section soft" id="vip-inquiry">
-      <div class="container form-grid">
-        <div class="media-tile square reveal"><img src="assets/media/FB_IMG_1780126066181.jpg" alt="Yaelitos VIP room prepared for private dining"></div>
-        <section class="form-panel reveal">
-          <p class="eyebrow">VIP Room Booking Inquiry</p>
-          <h2>Ask About the VIP Room</h2>
-          <p class="lead">Use this for private dining, meetings, birthdays, and intimate celebrations.</p>
-          <form class="form" data-inquiry-form="VIP Room Booking Inquiry">
-            <div class="field-grid"><label>Name<input name="name" autocomplete="name" required></label><label>Contact Number<input name="contact-number" autocomplete="tel" required></label></div>
-            <div class="field-grid"><label>Date<input name="date" type="date" required></label><label>Time<input name="time" type="time" required></label></div>
-            <div class="field-grid"><label>Number of Guests<input name="number-of-guests" type="number" min="1" required></label><label>Event Type<input name="event-type" placeholder="Birthday, surprise, meeting" required></label></div>
-            <label>Message<textarea name="message" placeholder="Tell us about your setup, TV backdrop, karaoke, movies, food needs, or program"></textarea></label>
-            <div class="form-status" role="status"></div>
-            <button class="button" type="submit">Prepare VIP Inquiry</button>
+        <div class="inquiry-card reveal">
+          <form class="inquiry-form" data-inquiry-form novalidate>
+            <div class="form-heading"><p class="eyebrow">Tell us the essentials</p><h2>What would you like to ask about?</h2></div>
+            <label class="field field-full">Inquiry type
+              <select name="inquiry-type" required>
+                <option value="">Choose one</option>
+                <option value="table">Table request</option>
+                <option value="private">Private gathering</option>
+                <option value="catering">Group meal / catering</option>
+                <option value="general">General question</option>
+              </select>
+            </label>
+            <div class="field-row">
+              <label class="field">Your name<input name="name" autocomplete="name" required></label>
+              <label class="field">Contact number<input name="contact-number" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX" required></label>
+            </div>
+            <div class="field-row">
+              <label class="field">Preferred date<input name="date" type="date" required></label>
+              <label class="field">Preferred time<input name="time" type="time" required></label>
+            </div>
+            <div class="field-row">
+              <label class="field">Number of guests<input name="guest-count" type="number" min="1" inputmode="numeric" required></label>
+              <label class="field">Occasion <span class="optional">Optional</span><input name="occasion" placeholder="Family meal, birthday, meeting"></label>
+            </div>
+            <label class="field field-full">Useful notes <span class="optional">Optional</span><textarea name="notes" rows="5" placeholder="Food questions, preferred setup, location, or anything staff should know"></textarea></label>
+            <p class="form-fine-print">Submitting this form prepares a message only. It does not create or confirm a reservation.</p>
+            <div class="form-status" data-inquiry-status role="status" aria-live="polite"></div>
+            <button class="button button-dark button-full" type="submit">Prepare my message</button>
           </form>
-        </section>
-      </div>
-    </section>
 
-    <section class="section" id="catering-inquiry">
-      <div class="container form-grid">
-        <aside class="info-panel reveal">
-          <p class="eyebrow">Operating Hours</p>
-          <h2>Operating Hours</h2>
-          <p>Open daily for dine-in, VIP Room inquiries, and event reservations.</p>
-          <ul class="hours">
-            <li><span>Monday to Sunday</span><strong>11:00 AM - 8:00 PM</strong></li>
-            <li><span>Reservations</span><strong>Call or message ahead</strong></li>
-            <li><span>Events</span><strong>PM for availability</strong></li>
-          </ul>
-        </aside>
-        <section class="form-panel reveal">
-          <p class="eyebrow">Catering Inquiry Form</p>
-          <h2>Plan Catering or an Event</h2>
-          <p class="lead">Use this for food packages, group meals, and celebration support.</p>
-          <form class="form" data-inquiry-form="Catering Inquiry">
-            <div class="field-grid"><label>Name<input name="name" autocomplete="name" required></label><label>Contact Number<input name="contact-number" autocomplete="tel" required></label></div>
-            <div class="field-grid"><label>Date<input name="date" type="date" required></label><label>Time<input name="time" type="time" required></label></div>
-            <div class="field-grid"><label>Number of Guests<input name="number-of-guests" type="number" min="1" required></label><label>Event Type<input name="event-type" placeholder="Birthday, corporate event, government function" required></label></div>
-            <label>Message<textarea name="message" placeholder="Preferred dishes, location, budget range, service needs, and special requests"></textarea></label>
-            <div class="form-status" role="status"></div>
-            <button class="button" type="submit">Prepare Catering Inquiry</button>
-          </form>
-        </section>
-      </div>
-    </section>
-
-    <section class="section soft">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Google Maps Location</p>
-          <h2>Find Yaelitos in M'lang, North Cotabato.</h2>
+          <section class="inquiry-result" data-inquiry-result hidden aria-labelledby="prepared-message-title">
+            <div class="result-heading"><p class="eyebrow">Ready to send</p><h2 id="prepared-message-title">Your prepared message</h2><p>Review it, then choose how to contact Yaelitos.</p></div>
+            <label class="field field-full">Message<textarea class="message-output" data-message-output rows="11" readonly></textarea></label>
+            <div class="result-actions">
+              <a class="button button-messenger" data-copy-messenger href="https://m.me/61557367387632" target="_blank" rel="noopener">Copy details &amp; open Messenger</a>
+              <a class="button button-outline" data-sms-link href="sms:+639120593992">Send by SMS</a>
+              <a class="text-link" data-call-link href="tel:+639120593992">Call Yaelitos instead ↗</a>
+            </div>
+            <p class="action-status" data-action-status role="status" aria-live="polite">Nothing has been sent yet.</p>
+          </section>
         </div>
-        <div class="map-frame reveal">
-          <iframe title="Yaelitos Restaurant map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Yaelitos%20Restaurant%20Rizal%20St.%2C%20Poblacion%20A%2C%20M%27lang%2C%20North%20Cotabato&output=embed"></iframe>
-        </div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="container map-grid">
+        <div class="map-copy reveal"><p class="eyebrow">Find us in M'lang</p><h2>Your table is closer than you think.</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="button button-dark" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Open full directions</a></div>
+        <div class="map-frame reveal"><iframe title="Map showing Yaelitos in M'lang" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Rizal%20St.%2C%20Poblacion%20A%2C%20M%27lang%2C%20Philippines%209402&output=embed"></iframe></div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div><a class="brand" href="index.html">Yaelitos <span>Restaurant and Events Space</span></a><p>Filipino comfort food, VIP room dining, catering, and celebrations in M'lang, North Cotabato.</p></div>
-      <div><h3>Visit</h3><p>Rizal St., Poblacion A, M'lang, North Cotabato</p></div>
-      <div><h3>Book</h3><div class="footer-links"><a href="#reservation">Reservation form</a><a href="#vip-inquiry">VIP room inquiry</a><a href="#catering-inquiry">Catering inquiry</a></div></div>
-      <div><h3>Contact</h3><div class="footer-links"><a data-contact="phone" href="tel:+639120593992">Call Yaelitos</a><a data-contact="messenger" href="https://m.me/yaelitosrestaurant">Message on Messenger</a></div></div>
+      <div class="footer-brand"><a class="brand brand-footer" href="index.html"><span class="brand-name" data-config="business.name">Yaelitos</span><span class="brand-tagline" data-config="business.tagline">Your Second Home</span></a><p>Warm food, welcoming tables, and gatherings in M'lang.</p></div>
+      <div><h2>Explore</h2><a href="menu.html">Food highlights</a><a href="private-events.html">Private events</a><a href="contact.html">Visit / Book</a></div>
+      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a></div>
+      <div><h2>Connect</h2><a data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span></a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Facebook Messenger</a><a data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Official Facebook page</a></div>
     </div>
-    <div class="container footer-bottom"><span>&copy; 2026 Yaelitos Restaurant</span><span>Dining, VIP room inquiries, catering, and celebrations.</span></div>
+    <div class="container footer-bottom"><span>© 2026 Yaelitos</span><span>Requests are confirmed only after Yaelitos replies.</span></div>
   </footer>
-  <div class="floating-actions"><a class="button secondary" data-icon="phone" data-contact="phone" href="tel:+639120593992">Call</a><a class="button" data-icon="message" data-contact="messenger" href="https://m.me/yaelitosrestaurant">Messenger</a></div>
-  <script src="assets/site.js"></script>
+  <div class="mobile-actions" aria-label="Quick contact"><a data-config-href="business.phoneHref" href="tel:+639120593992">Call</a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a></div>
+  <script src="assets/site-config.js"></script><script src="assets/site.js"></script>
 </body>
 </html>

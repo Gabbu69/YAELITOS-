@@ -1,50 +1,44 @@
 # Yaelitos Restaurant Website
 
-Premium static website for Yaelitos Restaurant, promoting dine-in service, the VIP room, catering, and celebration bookings.
+A premium, mobile-first static website for Yaelitos Restaurant. It introduces the food and event services, then helps customers send a complete inquiry through the restaurant's existing Messenger, SMS, or phone workflow.
 
-## Pages
+## Customer Pages
 
-- `index.html` - Home page
-- `about.html` - About Yaelitos
-- `menu.html` - Featured menu
-- `vip-room.html` - VIP room promotion
-- `catering-events.html` - Catering and events
-- `gallery.html` - Photo gallery and celebration gallery
-- `contact.html` - Contact, map, reservation form, VIP inquiry form, and catering inquiry form
+- `index.html` - Home, restaurant story, trust details, highlights, and gallery
+- `menu.html` - Food highlights
+- `private-events.html` - Private room and catering/group-meal inquiries
+- `contact.html` - Visit information, directions, and the guided booking form
 
-## Current Business Details
+The former About, Gallery, VIP Room, and Catering URLs remain as lightweight redirects so old links still reach the correct content.
 
-- Name: Yaelitos Restaurant
-- Tagline: Your Second Home
-- Location: Rizal St., Poblacion A, M'lang, North Cotabato
-- Contact number: 0912-059-3992
-- Open: Monday-Sunday, 11AM-8PM
-- Category: Filipino comfort food, VIP Room, catering, private gatherings
+## How Inquiries Work
 
-## Staff Edits
+The guided form prepares a readable message from the customer's details. Its main action copies the details and opens Facebook Messenger. SMS and click-to-call remain available as fallbacks.
 
-Most common updates are simple text edits:
+The website does not receive, store, or confirm the request. A request is confirmed only after Yaelitos replies. The short daily workflow for nontechnical staff is in [`STAFF-GUIDE.md`](STAFF-GUIDE.md).
 
-- Contact details and form routing: `assets/site.js`
-- Operating hours: `contact.html`
-- Menu items and prices: `menu.html`
-- Gallery photos: `gallery.html` and `assets/media/`
-- Colors and layout: `assets/styles.css`
+## Business Information
 
-## What Is Intentionally Not Included
+`assets/site-config.js` is the source of truth for repeated business details. Its sections contain:
 
-This website does not include online ordering, online payment, accounts, admin tools, POS, inventory, a mobile app, or chatbot features.
+- `business` - name, tagline, phone links, address, and directions
+- `facebook` - Page and Messenger links plus dated trust labels
+- `announcement` - an optional site-wide notice, label, and link
+
+Update this file rather than repeating a new phone number, address, or social link across multiple pages. Page-specific food or event copy stays in its relevant HTML file. Approved restaurant photos belong in `assets/media/`.
+
+Facebook content is a curated, one-time part of the site; there is no live scraper or automatic feed. Day-to-day promotions should continue on Facebook.
 
 ## Local Preview
 
-From this folder, run:
+From the project folder, run:
 
-```bash
-python -m http.server 8080
+```powershell
+python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Then open:
+Then open `http://127.0.0.1:8080/`. Use another free local port only if port 8080 is already occupied.
 
-```text
-http://127.0.0.1:8080/index.html
-```
+## Intentional Boundaries
+
+The project remains plain HTML, CSS, and JavaScript. It has no backend, database, staff dashboard, customer accounts, online ordering, online payment, POS, inventory system, AI chatbot, or live Facebook scraper.

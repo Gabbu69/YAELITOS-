@@ -3,174 +3,217 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yaelitos Restaurant | Your Second Home in M'lang</title>
-  <meta name="description" content="Yaelitos Restaurant in M'lang, North Cotabato serves Filipino comfort food with VIP Room reservations, catering, and celebration spaces.">
-  <meta property="og:title" content="Yaelitos Restaurant">
-  <meta property="og:description" content="Filipino comfort food, private celebrations, VIP room booking, and catering by Yaelitos.">
-  <meta property="og:image" content="assets/media/FB_IMG_1780126078429.jpg">
+  <meta name="theme-color" content="#173d2d">
+  <title>Yaelitos | Your Second Home in M'lang</title>
+  <meta name="description" content="Discover Yaelitos in M'lang through real food and dining-space photos. Ask about a table, private gathering, or group meal through Messenger.">
+  <meta property="og:title" content="Yaelitos | Your Second Home">
+  <meta property="og:description" content="Warm tables, comforting food, and spaces for gathering in M'lang.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Gabbu69/YAELITOS-/main/assets/media/FB_IMG_1780126078429.jpg">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Restaurant","name":"Yaelitos Restaurant","slogan":"Your Second Home","servesCuisine":"Filipino comfort food","address":{"@type":"PostalAddress","streetAddress":"Rizal St., Poblacion A","addressLocality":"M'lang","addressRegion":"North Cotabato","addressCountry":"PH"},"telephone":"+639120593992","openingHours":"Mo-Su 11:00-20:00","priceRange":"PHP","acceptsReservations":true}
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Yaelitos",
+    "slogan": "Your Second Home",
+    "telephone": "+639120593992",
+    "image": "https://raw.githubusercontent.com/Gabbu69/YAELITOS-/main/assets/media/FB_IMG_1780126078429.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rizal St., Poblacion A",
+      "addressLocality": "M'lang",
+      "postalCode": "9402",
+      "addressCountry": "PH"
+    },
+    "sameAs": ["https://www.facebook.com/profile.php?id=61557367387632"]
+  }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class="site-header">
-    <div class="nav-wrap">
-      <a class="brand" href="index.html">Yaelitos <span>Restaurant and Events Space</span></a>
-      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="menu.html">Menu</a>
-        <a href="vip-room.html">VIP Room</a>
-        <a href="catering-events.html">Catering</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Yaelitos home">
+        <span class="brand-name" data-config="business.name">Yaelitos</span>
+        <span class="brand-tagline" data-config="business.tagline">Your Second Home</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="site-navigation" aria-label="Main navigation">
+        <a class="active" aria-current="page" href="index.html">Home</a>
+        <a href="menu.html">Food</a>
+        <a href="private-events.html">Private Events</a>
+        <a href="contact.html">Visit / Book</a>
       </nav>
-      <div class="nav-actions">
-        <a class="button secondary" href="contact.html#reservation">Reserve</a>
-      </div>
+      <a class="button button-small header-cta" data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Message us</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="main-content">
+    <section class="hero hero-home">
       <div class="hero-media">
-        <img src="assets/media/FB_IMG_1780126078429.jpg" alt="Yaelitos restaurant dining room with warm lighting, rattan chairs, and prepared tables">
+        <picture>
+          <source type="image/webp" srcset="assets/media/FB_IMG_1780126078429-640.webp 640w, assets/media/FB_IMG_1780126078429-1280.webp 1280w" sizes="100vw">
+          <img src="assets/media/FB_IMG_1780126078429.jpg" width="2048" height="1856" alt="Warm Yaelitos dining room with rattan chairs and orange banquette seating" fetchpriority="high">
+        </picture>
       </div>
-      <div class="hero-inner reveal">
-        <p class="eyebrow">M'lang, North Cotabato</p>
-        <h1>Your Second Home</h1>
-        <p class="hero-copy">Yaelitos Restaurant serves Filipino comfort food, VIP Room gatherings, catering, and celebrations in M'lang, North Cotabato.</p>
-        <div class="hero-ctas">
-          <a class="button" href="contact.html#reservation">Reserve Now</a>
-          <a class="button secondary" href="menu.html">View Menu</a>
-          <a class="button secondary" href="vip-room.html">VIP Room</a>
-          <a class="button clay" data-contact="messenger" href="https://m.me/yaelitosrestaurant">Message on Facebook</a>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="eyebrow light">M'lang, Cotabato · Your Second Home</p>
+        <h1>Good food. Warm tables. A place that feels like home.</h1>
+        <p class="hero-copy">Discover Yaelitos through real food and dining-space photos. Ask about a table, a private gathering, or a group meal through Facebook Messenger.</p>
+        <div class="hero-actions">
+          <a class="button button-gold" href="contact.html#inquiry">Start an inquiry</a>
+          <a class="text-link light-link" href="menu.html">Explore food <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-proof" aria-label="Yaelitos Facebook highlights">
+          <span><strong data-config="facebook.followersLabel">9.5K followers</strong> on Facebook</span>
+          <span><strong data-config="facebook.recommendationLabel">92% recommend</strong> from 8 reviews</span>
         </div>
       </div>
     </section>
 
-    <section class="quick-strip" aria-label="Quick restaurant details">
-      <div class="inner">
-        <div class="quick-item"><strong>Location</strong><span>Rizal St., Poblacion A</span></div>
-        <div class="quick-item"><strong>Hours</strong><span>Monday-Sunday, 11AM-8PM</span></div>
-        <div class="quick-item"><strong>Dining</strong><span>Filipino comfort food and VIP Room</span></div>
-        <div class="quick-item"><strong>Contact</strong><span data-phone-text>0912-059-3992</span></div>
+    <section class="service-ribbon" aria-label="Ways to enjoy Yaelitos">
+      <div class="container service-ribbon-grid">
+        <a href="contact.html#inquiry">
+          <span class="service-number">01</span>
+          <span><strong>Come for a meal</strong><small>Ask about a table</small></span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href="private-events.html#private-room">
+          <span class="service-number">02</span>
+          <span><strong>Gather privately</strong><small>Explore the dining space</small></span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href="private-events.html#catering">
+          <span class="service-number">03</span>
+          <span><strong>Plan a group meal</strong><small>Start a catering inquiry</small></span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
 
-    <section class="booking-section">
+    <section class="section story-section" id="story">
+      <div class="container split-layout">
+        <div class="story-copy reveal">
+          <p class="eyebrow">Welcome home</p>
+          <h2>Made for everyday meals and meaningful gatherings.</h2>
+          <p class="lead">Yaelitos pairs a warm, thoughtfully designed dining room with food made for sharing. Come with family, meet friends, or ask about a more private celebration.</p>
+          <p>For current availability, event details, and the latest updates, the Yaelitos team will guide you directly through Messenger.</p>
+          <a class="text-link" href="private-events.html">See private-event options <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="editorial-media reveal">
+          <picture>
+            <source type="image/webp" srcset="assets/media/FB_IMG_1780126105313-640.webp 640w, assets/media/FB_IMG_1780126105313-1280.webp 1280w" sizes="(max-width: 800px) 100vw, 48vw">
+            <img src="assets/media/FB_IMG_1780126105313.jpg" width="1320" height="1260" alt="Yaelitos dining room prepared with tables, rattan chairs, mirrors, and warm pendant lights" loading="lazy" decoding="async">
+          </picture>
+          <span class="media-note">Warm, welcoming dining in M'lang</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark food-preview">
       <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">Book Your Yaelitos Visit</p>
-          <h2>Choose the right inquiry in one tap.</h2>
-          <p>Guests can quickly reserve a table, ask about the VIP room, or start a catering conversation.</p>
+        <div class="section-heading section-heading-row reveal">
+          <div>
+            <p class="eyebrow light">From the Yaelitos table</p>
+            <h2>Comforting flavors, presented with care.</h2>
+          </div>
+          <a class="text-link light-link" href="menu.html">View food highlights <span aria-hidden="true">→</span></a>
         </div>
-        <div class="booking-options">
-          <article class="booking-option reveal">
-            <h3>Reserve a Table</h3>
-            <p>For dine-in meals, Filipino comfort food cravings, and small group dinners.</p>
-            <a class="button" href="contact.html#reservation">Reserve a Table</a>
+        <div class="food-grid">
+          <article class="food-card reveal">
+            <picture>
+              <source type="image/webp" srcset="assets/media/FB_IMG_1780126085625-640.webp 640w, assets/media/FB_IMG_1780126085625-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 33vw">
+              <img src="assets/media/FB_IMG_1780126085625.jpg" width="1320" height="1320" alt="A warm Yaelitos comfort bowl topped with egg, meat, and spring onions" loading="lazy" decoding="async">
+            </picture>
+            <div><span>01</span><h3>Warm comfort bowls</h3><p>Hearty, familiar flavors for an easy meal at home away from home.</p></div>
           </article>
-          <article class="booking-option reveal">
-            <h3>Book VIP Room</h3>
-            <p>For 25-50 pax gatherings, birthdays, surprises, karaoke, and family salo-salo.</p>
-            <a class="button secondary" href="contact.html#vip-inquiry">Book VIP Room</a>
+          <article class="food-card reveal">
+            <picture>
+              <source type="image/webp" srcset="assets/media/FB_IMG_1780126083363-640.webp 640w, assets/media/FB_IMG_1780126083363-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 33vw">
+              <img src="assets/media/FB_IMG_1780126083363.jpg" width="1491" height="1077" alt="Crisp roasted meat served over banana leaf at Yaelitos" loading="lazy" decoding="async">
+            </picture>
+            <div><span>02</span><h3>Crisp sharing plates</h3><p>Rich, golden favorites made to bring everyone closer around the table.</p></div>
           </article>
-          <article class="booking-option reveal">
-            <h3>Ask About Catering</h3>
-            <p>For birthdays, family gatherings, corporate events, and private celebrations.</p>
-            <a class="button clay" href="contact.html#catering-inquiry">Ask About Catering</a>
+          <article class="food-card reveal">
+            <picture>
+              <source type="image/webp" srcset="assets/media/FB_IMG_1780126110950-640.webp 640w, assets/media/FB_IMG_1780126110950-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 33vw">
+              <img src="assets/media/FB_IMG_1780126110950.jpg" width="1320" height="1272" alt="A richly roasted sharing dish prepared at Yaelitos" loading="lazy" decoding="async">
+            </picture>
+            <div><span>03</span><h3>Gathering-ready food</h3><p>Generous food and polished presentation for family meals and celebrations.</p></div>
           </article>
         </div>
+        <p class="availability-note">Food changes with availability. Message Yaelitos for today's choices and current prices.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split">
-        <div class="reveal">
-          <p class="eyebrow">Welcome home to Yaelitos</p>
-          <h2>A restaurant and event venue built for meaningful gatherings.</h2>
-          <p class="lead">Yaelitos brings together Filipino comfort food, an airconditioned VIP Room, flexible catering, and a warm setting for family milestones, meetings, and private celebrations.</p>
-          <div class="stats">
-            <div class="stat"><strong>VIP</strong><span>Room available</span></div>
-            <div class="stat"><strong>Food</strong><span>Catering inquiries</span></div>
-            <div class="stat"><strong>Events</strong><span>Celebrations welcome</span></div>
-          </div>
-          <div class="popular-list" aria-label="Popular for">
-            <span>Birthdays</span>
-            <span>Family Meals</span>
-            <span>Meetings</span>
-            <span>Private Salo-Salo</span>
-            <span>Catering</span>
-          </div>
-          <div class="cta-row">
-            <a class="button" href="vip-room.html">Explore VIP Room</a>
-            <a class="button clay" href="catering-events.html">Plan an Event</a>
-          </div>
-        </div>
-        <div class="media-tile square reveal">
-          <img src="assets/media/FB_IMG_1780126066181.jpg" alt="Private dining room at Yaelitos with prepared tables and warm interiors">
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft">
+    <section class="section gallery-section" id="gallery">
       <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">Food Highlights</p>
-          <h2>Comfort food with celebration-ready favorites.</h2>
-          <p>PM Yaelitos for current availability, serving sizes, and updated prices.</p>
+        <div class="section-heading reveal">
+          <p class="eyebrow">A look inside</p>
+          <h2>Real spaces. Real food. The Yaelitos atmosphere.</h2>
+          <p>Tap any photo for a closer look.</p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card reveal">
-            <img src="assets/media/FB_IMG_1780126090920.jpg" alt="Yaelitos lechon belly roll">
-            <div class="body">
-              <h3>Lechon Belly Roll</h3>
-              <p>Crisp, rich, and ready for family gatherings or catered celebrations.</p>
-            </div>
-          </article>
-          <article class="feature-card reveal">
-            <img src="assets/media/FB_IMG_1780126085625.jpg" alt="Yaelitos lechon batchoy in a white bowl">
-            <div class="body">
-              <h3>Lechon Batchoy</h3>
-              <p>Warm broth, tender meat, and hearty flavor for a comforting meal.</p>
-            </div>
-          </article>
-          <article class="feature-card reveal">
-            <img src="assets/media/FB_IMG_1780126089039.jpg" alt="Yaelitos Filipino lechon belly roll on a tray">
-            <div class="body">
-              <h3>Filipino Comfort Food</h3>
-              <p>Pinoy flavors presented with a dining room made for groups and families.</p>
-            </div>
-          </article>
+        <div class="gallery-editorial">
+          <button class="gallery-tile gallery-tile-wide reveal" type="button" data-gallery-open data-gallery-src="assets/media/FB_IMG_1780126078429.jpg" data-gallery-caption="The main dining room at Yaelitos">
+            <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126078429-640.webp 640w, assets/media/FB_IMG_1780126078429-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 58vw"><img src="assets/media/FB_IMG_1780126078429.jpg" width="2048" height="1856" alt="Yaelitos main dining room" loading="lazy" decoding="async"></picture>
+            <span>Dining room</span>
+          </button>
+          <button class="gallery-tile gallery-tile-tall reveal" type="button" data-gallery-open data-gallery-src="assets/media/FB_IMG_1780126069162.jpg" data-gallery-caption="A private dining table at Yaelitos">
+            <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126069162-640.webp 640w, assets/media/FB_IMG_1780126069162-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 38vw"><img src="assets/media/FB_IMG_1780126069162.jpg" width="1320" height="1440" alt="Private dining table beside a warm brick wall" loading="lazy" decoding="async"></picture>
+            <span>Private table</span>
+          </button>
+          <button class="gallery-tile reveal" type="button" data-gallery-open data-gallery-src="assets/media/FB_IMG_1780126072666.jpg" data-gallery-caption="Handwoven details and warm light">
+            <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126072666-640.webp 640w, assets/media/FB_IMG_1780126072666-1280.webp 1280w" sizes="(max-width: 760px) 50vw, 29vw"><img src="assets/media/FB_IMG_1780126072666.jpg" width="1536" height="1024" alt="Woven pendant lights inside Yaelitos" loading="lazy" decoding="async"></picture>
+            <span>Warm details</span>
+          </button>
+          <button class="gallery-tile reveal" type="button" data-gallery-open data-gallery-src="assets/media/FB_IMG_1780126083363.jpg" data-gallery-caption="A crisp sharing plate from the Yaelitos kitchen">
+            <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126083363-640.webp 640w, assets/media/FB_IMG_1780126083363-1280.webp 1280w" sizes="(max-width: 760px) 50vw, 29vw"><img src="assets/media/FB_IMG_1780126083363.jpg" width="1491" height="1077" alt="Crisp roasted sharing plate on banana leaf" loading="lazy" decoding="async"></picture>
+            <span>From the kitchen</span>
+          </button>
+          <button class="gallery-tile gallery-tile-wide reveal" type="button" data-gallery-open data-gallery-src="assets/media/FB_IMG_1780126118406.jpg" data-gallery-caption="A long table prepared for a group gathering">
+            <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126118406-640.webp 640w, assets/media/FB_IMG_1780126118406-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 58vw"><img src="assets/media/FB_IMG_1780126118406.jpg" width="1536" height="2048" alt="Long Yaelitos table prepared with plated meals" loading="lazy" decoding="async"></picture>
+            <span>Gathering table</span>
+          </button>
         </div>
+        <noscript><p class="noscript-note">Open the individual photos above in your browser to view them at full size.</p></noscript>
       </div>
     </section>
 
-    <section class="band">
-      <div class="band-inner reveal">
+    <section class="section proof-section">
+      <div class="container proof-grid">
+        <div class="proof-copy reveal">
+          <p class="eyebrow">Trusted on Facebook</p>
+          <h2>Follow where Yaelitos is already part of the community.</h2>
+          <p>See current food posts, announcements, and everyday updates on the official Facebook page.</p>
+          <a class="button button-dark" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">See latest Facebook posts</a>
+        </div>
+        <a class="social-proof-card reveal" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener" aria-label="Visit Yaelitos on Facebook">
+          <span class="social-proof-label">Facebook community</span>
+          <strong data-config="facebook.followersLabel">9.5K followers</strong>
+          <strong data-config="facebook.recommendationLabel">92% recommend</strong>
+          <small>Based on 8 Facebook reviews · checked <span data-config="facebook.checkedOn">July 2026</span></small>
+          <span class="social-proof-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="visit-band">
+      <div class="container visit-band-grid reveal">
         <div>
-          <p class="eyebrow">Reservations available</p>
-          <h2>Book a table, VIP room, or catered celebration.</h2>
-          <p>Send the details of your visit and Yaelitos will help confirm the best dining, VIP room, or catering option for your group.</p>
+          <p class="eyebrow light">Visit Yaelitos</p>
+          <h2>Find your second home in M'lang.</h2>
+          <p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p>
         </div>
-        <a class="button clay" href="contact.html#reservation">Start Inquiry</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Customer Reviews</p>
-          <h2>Designed to make guests feel taken care of.</h2>
-        </div>
-        <div class="reviews-grid">
-          <article class="review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"A cozy place for family meals and celebrations. The dining room looks beautiful in photos."</p><strong>Family guest</strong></article>
-          <article class="review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Great spot for private gatherings. The VIP room setup feels comfortable and polished."</p><strong>Celebration guest</strong></article>
-          <article class="review reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Comfort food, warm service, and a place we can recommend for small events."</p><strong>Local diner</strong></article>
+        <div class="visit-band-actions">
+          <a class="button button-gold" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a>
+          <a class="text-link light-link" href="contact.html">Contact and booking <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -178,18 +221,28 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div><a class="brand" href="index.html">Yaelitos <span>Restaurant and Events Space</span></a><p>Filipino comfort food, VIP room dining, catering, and celebrations in M'lang, North Cotabato.</p></div>
-      <div><h3>Visit</h3><p>Rizal St., Poblacion A, M'lang, North Cotabato</p></div>
-      <div><h3>Book</h3><div class="footer-links"><a href="contact.html#reservation">Reservation form</a><a href="contact.html#vip-inquiry">VIP room inquiry</a><a href="contact.html#catering-inquiry">Catering inquiry</a></div></div>
-      <div><h3>Contact</h3><div class="footer-links"><a data-contact="phone" href="tel:+639120593992">Call Yaelitos</a><a data-contact="messenger" href="https://m.me/yaelitosrestaurant">Message on Messenger</a></div></div>
+      <div class="footer-brand">
+        <a class="brand brand-footer" href="index.html"><span class="brand-name" data-config="business.name">Yaelitos</span><span class="brand-tagline" data-config="business.tagline">Your Second Home</span></a>
+        <p>Warm food, welcoming tables, and gatherings in M'lang.</p>
+      </div>
+      <div><h2>Explore</h2><a href="menu.html">Food highlights</a><a href="private-events.html">Private events</a><a href="contact.html">Visit / Book</a></div>
+      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a></div>
+      <div><h2>Connect</h2><a data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span></a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Facebook Messenger</a><a data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Official Facebook page</a></div>
     </div>
-    <div class="container footer-bottom"><span>&copy; 2026 Yaelitos Restaurant</span><span>Dining, VIP room inquiries, catering, and celebrations.</span></div>
+    <div class="container footer-bottom"><span>© 2026 Yaelitos</span><span>Requests are confirmed only after Yaelitos replies.</span></div>
   </footer>
 
-  <div class="floating-actions">
-    <a class="button secondary" data-icon="phone" data-contact="phone" href="tel:+639120593992">Call</a>
-    <a class="button" data-icon="message" data-contact="messenger" href="https://m.me/yaelitosrestaurant">Messenger</a>
+  <dialog class="gallery-dialog" data-gallery-dialog aria-labelledby="gallery-dialog-caption">
+    <button class="dialog-close" type="button" data-dialog-close aria-label="Close photo">×</button>
+    <figure><img src="assets/media/FB_IMG_1780126078429.jpg" alt=""><figcaption id="gallery-dialog-caption" data-gallery-caption></figcaption></figure>
+  </dialog>
+
+  <div class="mobile-actions" aria-label="Quick contact">
+    <a data-config-href="business.phoneHref" href="tel:+639120593992">Call</a>
+    <a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a>
   </div>
+
+  <script src="assets/site-config.js"></script>
   <script src="assets/site.js"></script>
 </body>
 </html>

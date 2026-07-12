@@ -1,71 +1,88 @@
 # AI Handoff Notes for Yaelitos Website
 
-This is a static HTML/CSS/JS website. Keep it simple and staff-friendly.
+This is a static HTML/CSS/JS website. Keep it customer-facing, fast, and simple for nontechnical restaurant staff.
 
 ## Project Intent
 
-Promote Yaelitos as:
+Present Yaelitos as a Filipino comfort food restaurant, private-room venue, catering provider, and celebration place for birthdays, meetings, salo-salo, and family events. The primary conversion is a clear inquiry through Facebook Messenger, with SMS and phone fallbacks.
 
-- A Filipino comfort food restaurant
-- A VIP Room venue
-- A catering provider
-- A celebration place for birthdays, meetings, salo-salo, and family events
+## Non-Negotiable Boundaries
 
-## Rules for Future Changes
+- Do not add online ordering, online payment, customer accounts, or booking confirmation automation.
+- Do not add an admin dashboard, POS, inventory system, AI chatbot, backend, or database.
+- Do not add a live Facebook scraper or automatic social feed.
+- Keep the site static unless the owner explicitly approves a new stack.
+- Do not put developer notes, sales quotes, or owner-only materials on customer pages. Keep local owner materials under the ignored `.owner-private/` folder.
+- Do not invent food names, prices, hours, capacity, equipment, packages, policies, testimonials, or service guarantees.
 
-- Do not add online ordering.
-- Do not add online payment.
-- Do not add customer accounts.
-- Do not add an admin dashboard.
-- Do not add POS or inventory features.
-- Do not add an AI chatbot.
-- Keep the site static unless the owner explicitly requests a new stack.
-- Keep the site customer-facing and avoid public developer or handoff copy.
+## Canonical Architecture
 
-## File Map
+- `index.html` - Home, story, trust details, highlights, and the gallery section
+- `menu.html` - Food highlights
+- `private-events.html` - Private room and catering/group meals
+- `contact.html` - Visit information, directions, and one guided inquiry form
+- `assets/site-config.js` - source of truth for repeated business and social details
+- `assets/site.js` - navigation, progressive reveal, gallery dialog, configuration binding, mobile actions, and inquiry behavior
+- `assets/styles.css` - visual design and responsive layout
+- `assets/media/` - approved, locally served restaurant media
 
-- `assets/styles.css` controls the full visual design and responsive layout.
-- `assets/site.js` controls mobile navigation, reveal animations, gallery lightbox, floating call/Messenger buttons, and form behavior.
-- `assets/media/` contains the supplied Yaelitos photos and video.
-- `contact.html` contains all three inquiry forms.
-- `menu.html` contains the first featured menu, based on visible supplied materials.
+Preserve these legacy routes as lightweight redirects:
 
-## Current Business Details
+- `about.html` -> `index.html#story`
+- `gallery.html` -> `index.html#gallery`
+- `vip-room.html` -> `private-events.html#private-room`
+- `catering-events.html` -> `private-events.html#catering`
+
+## Configuration Source of Truth
+
+Keep repeated facts in `assets/site-config.js` under these sections and keys:
+
+- `business`: `name`, `tagline`, `phoneDisplay`, `phoneHref`, `smsHref`, `address`, `directionsUrl`
+- `facebook`: `pageUrl`, `messengerUrl`, `followersLabel`, `recommendationLabel`, `checkedOn`
+- `announcement`: `enabled`, `text`, `label`, `href`
+
+Shared facts should be changed in the configuration rather than edited separately on every page. Keep valid HTML fallback text so essential contact information remains usable if JavaScript is unavailable. Date any Facebook follower or recommendation labels, and do not silently present old counts as live data.
+
+Current core details are:
 
 - Name: Yaelitos Restaurant
 - Tagline: Your Second Home
-- Location: Rizal St., Poblacion A, M'lang, North Cotabato
+- Address: Rizal St., Poblacion A, M'lang, Philippines 9402
 - Contact number: 0912-059-3992
-- Open: Monday-Sunday, 11AM-8PM
-- Category: Filipino comfort food, VIP Room, catering, private gatherings
+- Category: Filipino comfort food, private room, catering, and private gatherings
 
-`assets/site.js` currently uses:
+Exact hours, food names/prices, room capacity/features, event inclusions, and policies require owner approval before publication.
 
-```js
-const SITE_CONTACT = {
-  phoneDisplay: "0912-059-3992",
-  phoneHref: "tel:+639120593992",
-  smsHref: "sms:+639120593992",
-  messengerUrl: "https://m.me/yaelitosrestaurant",
-  address: "Rizal St., Poblacion A, M'lang, North Cotabato"
-};
-```
+## Inquiry Behavior
 
-Update the map embed in `contact.html` only if the restaurant has a more exact Google Maps listing URL.
+There is one guided form for table requests, private gatherings, and catering/group meals. After validation, it builds a formatted message and offers:
 
-## Form Behavior
+1. Copy details and open Messenger
+2. Prefilled SMS as a fallback
+3. Click-to-call as a final fallback
 
-The forms are static. On submit, JavaScript validates required fields, builds a message, copies it when possible, and opens the visitor's SMS app addressed to 0912-059-3992. Visitors can also send the same details through Facebook Messenger or call directly.
+Do not clear the customer's input automatically. Provide a manual-copy option when clipboard access fails. Clearly state that the request is only confirmed after Yaelitos replies. The static site must not transmit or store form data itself.
 
-## Design Notes
+## Staff Workflow
 
-The site uses a warm Filipino restaurant palette: cream, dark ink, leaf green, clay, gold, and teal accents. Avoid turning the whole site into a single-color theme. Use the real restaurant photos as the main visual signal.
+Staff do not log into the website. They reply through the Yaelitos Facebook Page inbox or Meta Business Suite and follow `STAFF-GUIDE.md`. Promotions remain on Facebook by default; a maintainer updates durable website facts and media after owner approval.
+
+## Design and Content Notes
+
+- Maintain the warm premium palette: ivory/cream, dark ink or espresso, leaf/forest green, restrained gold, clay, and teal accents.
+- Use real approved restaurant photos as the main visual signal and exclude identifiable customer faces unless permission is clear.
+- Keep claims factual and use "ask about" wording for unconfirmed event details.
+- Serve optimized media locally; do not hotlink expiring Facebook CDN URLs.
+- Preserve keyboard access, strong focus styles, reduced-motion support, readable contrast, and useful no-JavaScript fallbacks.
 
 ## Quick QA Checklist
 
-- Open `index.html`, `menu.html`, `vip-room.html`, `catering-events.html`, `gallery.html`, and `contact.html`.
-- Check mobile navigation below 700px wide.
-- Confirm floating Call and Messenger buttons are readable.
-- Confirm the gallery lightbox opens and closes.
-- Confirm all three forms validate required fields.
-- Confirm no missing images in `assets/media/`.
+- Open the four canonical pages and verify all desktop/mobile navigation links.
+- Check every legacy redirect and its destination anchor.
+- Test at narrow mobile, tablet, and desktop widths with no covered controls or horizontal scrolling.
+- Confirm the mobile menu works by keyboard and closes with Escape.
+- Confirm the gallery dialog opens, closes, and returns focus.
+- Test required fields, invalid/past dates, clipboard failure, Messenger, SMS, and phone fallbacks.
+- Confirm shared contact/social values match `assets/site-config.js` and essential fallback content works without JavaScript.
+- Confirm all media paths resolve and no Facebook CDN URL is used.
+- Check for console errors and broken internal links.
