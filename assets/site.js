@@ -5,6 +5,26 @@
   const root = document.documentElement;
   root.classList.add("js");
 
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const slowUpdateQuery = window.matchMedia("(update: slow)");
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const deviceMemory = Number(navigator.deviceMemory || 0);
+  const processorCount = Number(navigator.hardwareConcurrency || 0);
+  const limitedHardware = (deviceMemory > 0 && deviceMemory <= 2) || (processorCount > 0 && processorCount <= 2);
+  const useLiteMotion = reducedMotionQuery.matches || slowUpdateQuery.matches || Boolean(connection?.saveData) || limitedHardware;
+  const useRichMotion = !useLiteMotion && deviceMemory > 4 && processorCount > 4;
+  const useLiteVisuals = useLiteMotion || (deviceMemory > 0 && deviceMemory <= 4) || (processorCount > 0 && processorCount <= 4);
+  root.classList.add(useLiteMotion ? "motion-lite" : useRichMotion ? "motion-rich" : "motion-standard");
+  root.classList.add(useLiteVisuals ? "visuals-lite" : "visuals-full");
+  if (!useLiteMotion) root.classList.add("motion-capable");
+
+  function updateMotionVisibility() {
+    root.classList.toggle("motion-paused", document.hidden);
+  }
+
+  document.addEventListener("visibilitychange", updateMotionVisibility);
+  updateMotionVisibility();
+
   const iconPaths = {
     phone: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.59 2.61a2 2 0 0 1-.45 2.11L8 9.69a16 16 0 0 0 6.31 6.31l1.25-1.25a2 2 0 0 1 2.11-.45c.84.27 1.71.47 2.61.59A2 2 0 0 1 22 16.92z"/></svg>',
     message: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>'
@@ -123,12 +143,28 @@
     const items = Array.from(document.querySelectorAll(".reveal"));
     if (!items.length) return;
 
+    const staggerGroups = document.querySelectorAll([
+      ".service-ribbon-grid",
+      ".food-grid",
+      ".food-collection",
+      ".gallery-editorial",
+      ".proof-grid",
+      ".events-intro-grid",
+      ".process-grid",
+      ".contact-details-grid"
+    ].join(","));
+
+    staggerGroups.forEach((group) => {
+      Array.from(group.children)
+        .filter((item) => item.classList.contains("reveal"))
+        .forEach((item, index) => item.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 70}ms`));
+    });
+
     // Content starts visible. CSS should only hide pending items beneath
     // .reveal-enhanced, so no-JS and unsupported browsers keep all content.
     items.forEach((item) => item.classList.add("visible"));
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion || !("IntersectionObserver" in window)) return;
+    if (useLiteMotion || !("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -141,10 +177,13 @@
       threshold: 0.08
     });
 
-    root.classList.add("reveal-enhanced");
-    items.forEach((item) => {
+    const pendingItems = items.filter((item) => {
       const bounds = item.getBoundingClientRect();
-      if (bounds.top < window.innerHeight && bounds.bottom > 0) return;
+      return !(bounds.top < window.innerHeight && bounds.bottom > 0);
+    });
+
+    root.classList.add("reveal-enhanced");
+    pendingItems.forEach((item) => {
       item.classList.remove("visible");
       observer.observe(item);
     });
@@ -438,6 +477,8 @@
         const message = inquiryMessage(form);
         output.value = message;
         result.hidden = false;
+        result.classList.remove("is-prepared");
+        if (!useLiteMotion) requestAnimationFrame(() => result.classList.add("is-prepared"));
         hasGeneratedMessage = true;
 
         if (smsLink && hasUsableValue(smsHref)) {

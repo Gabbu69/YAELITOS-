@@ -44,6 +44,7 @@
   --max: 1200px;
   --display: "Yaelitos Display", Georgia, "Times New Roman", serif;
   --sans: "Yaelitos Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 *,
@@ -272,6 +273,7 @@ h3 {
 
 .button,
 button.button {
+  position: relative;
   min-height: 52px;
   display: inline-flex;
   align-items: center;
@@ -285,8 +287,22 @@ button.button {
   font-size: 0.87rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+  overflow: hidden;
   cursor: pointer;
   transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.button::after,
+button.button::after {
+  content: "";
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: -58%;
+  width: 34%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  transform: skewX(-18deg);
 }
 
 .button:hover {
@@ -362,11 +378,23 @@ button.button {
 
 .eyebrow {
   margin: 0 0 17px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
   color: #825f25;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.19em;
   text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .eyebrow.light {
@@ -424,6 +452,26 @@ button.button {
   overflow: hidden;
   color: var(--white);
   background: var(--forest-deep);
+}
+
+.hero::after,
+.events-hero::after,
+.page-hero::after,
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: clamp(220px, 28vw, 430px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: url("gathering-mark.svg") center / contain no-repeat;
+  opacity: var(--mark-opacity, 0.3);
+}
+
+.hero::after {
+  --mark-opacity: 0.38;
+  top: clamp(64px, 10vh, 108px);
+  right: clamp(-55px, 2vw, 34px);
 }
 
 .hero-media,
@@ -492,8 +540,25 @@ button.button {
 }
 
 .service-ribbon {
+  position: relative;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+}
+
+.service-ribbon::before,
+.food-notice::before,
+.events-intro::before,
+.contact-details-section::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 2;
+  width: min(190px, 34vw);
+  height: 7px;
+  background: repeating-linear-gradient(135deg, transparent 0 5px, var(--gold) 5px 7px, transparent 7px 12px);
+  transform: translateX(-50%);
+  opacity: 0.86;
 }
 
 .service-ribbon-grid {
@@ -606,6 +671,7 @@ button.button {
 }
 
 .food-card {
+  position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: var(--radius);
@@ -671,18 +737,25 @@ button.button {
 
 .gallery-tile img {
   object-fit: cover;
-  transition: transform 360ms ease, filter 360ms ease;
+  transition: transform 360ms ease;
 }
 
-.gallery-tile:hover img {
-  transform: scale(1.035);
-  filter: saturate(1.08);
+.gallery-tile::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: calc(var(--radius) - 7px);
+  pointer-events: none;
+  opacity: 0.72;
 }
 
 .gallery-tile > span {
   position: absolute;
   right: 14px;
   bottom: 14px;
+  z-index: 2;
   padding: 8px 12px;
   border-radius: 999px;
   color: var(--ink);
@@ -935,11 +1008,21 @@ button.button {
 
 /* Food page */
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(70px, 8vw, 112px) 0;
   background: var(--ivory);
 }
 
+.page-hero::after {
+  --mark-opacity: 0.25;
+  top: clamp(24px, 5vw, 74px);
+  right: clamp(-120px, -5vw, -50px);
+}
+
 .page-hero-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(400px, 0.8fr);
   align-items: center;
@@ -981,6 +1064,39 @@ button.button {
   object-fit: cover;
 }
 
+.food-steam {
+  position: absolute;
+  top: -18px;
+  left: 68px;
+  z-index: 3;
+  height: 72px;
+  display: flex;
+  align-items: end;
+  gap: 3px;
+  color: var(--terracotta);
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.food-steam i {
+  width: 15px;
+  height: 54px;
+  display: block;
+  border-left: 2px solid currentColor;
+  border-radius: 48% 0 0 52%;
+  transform: rotate(10deg);
+}
+
+.food-steam i:nth-child(2) {
+  height: 68px;
+  transform: rotate(-6deg);
+}
+
+.food-steam i:nth-child(3) {
+  height: 48px;
+  transform: rotate(13deg);
+}
+
 .image-index {
   position: absolute;
   right: 56px;
@@ -993,6 +1109,7 @@ button.button {
 }
 
 .food-notice {
+  position: relative;
   border-block: 1px solid var(--line);
   background: var(--paper);
 }
@@ -1021,6 +1138,7 @@ button.button {
 }
 
 .collection-card {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1096,6 +1214,12 @@ button.button {
   background: var(--forest-deep);
 }
 
+.events-hero::after {
+  --mark-opacity: 0.36;
+  top: clamp(82px, 11vh, 128px);
+  right: clamp(-70px, 3vw, 48px);
+}
+
 .events-hero-media,
 .events-hero-shade {
   position: absolute;
@@ -1135,6 +1259,7 @@ button.button {
 }
 
 .events-intro {
+  position: relative;
   padding: 88px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -1165,6 +1290,16 @@ button.button {
   position: relative;
 }
 
+.event-option-media::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: calc(var(--radius-lg) - 10px);
+  pointer-events: none;
+}
+
 .event-option-media picture {
   overflow: hidden;
   border-radius: var(--radius-lg);
@@ -1185,6 +1320,7 @@ button.button {
   height: 52px;
   display: grid;
   place-items: center;
+  z-index: 2;
   border-radius: 50%;
   color: var(--white);
   background: var(--terracotta);
@@ -1207,6 +1343,7 @@ button.button {
 }
 
 .process-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
@@ -1215,8 +1352,23 @@ button.button {
   list-style: none;
 }
 
+.process-grid::before {
+  content: "";
+  position: absolute;
+  top: 52px;
+  right: 52px;
+  left: 52px;
+  z-index: 2;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--gold), var(--terracotta), var(--gold));
+  transform-origin: left;
+}
+
 .process-grid li {
+  position: relative;
   min-height: 270px;
+  overflow: hidden;
   padding: 30px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1224,9 +1376,17 @@ button.button {
 }
 
 .process-grid li > span {
-  display: block;
-  margin-bottom: 50px;
+  position: relative;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 40px;
+  border: 1px solid rgba(217, 168, 84, 0.72);
+  border-radius: 50%;
   color: #7a5923;
+  background: var(--paper);
   font-family: var(--display);
   font-size: 1.4rem;
 }
@@ -1279,12 +1439,22 @@ button.button {
 
 /* Contact */
 .contact-hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(64px, 8vw, 104px) 0;
   color: var(--white);
   background: var(--forest-deep);
 }
 
+.contact-hero::before {
+  --mark-opacity: 0.3;
+  top: clamp(20px, 4vw, 64px);
+  right: clamp(-90px, 2vw, 32px);
+}
+
 .contact-hero-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(380px, 0.65fr);
   align-items: center;
@@ -1315,6 +1485,7 @@ button.button {
 }
 
 .contact-details-section {
+  position: relative;
   border-bottom: 1px solid var(--line);
   background: var(--ivory);
 }
@@ -1325,9 +1496,31 @@ button.button {
 }
 
 .contact-detail {
+  position: relative;
   min-height: 260px;
   padding: 38px 34px;
   border-right: 1px solid var(--line);
+}
+
+.food-card::after,
+.collection-card::after,
+.process-grid li::after,
+.contact-detail::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 23px;
+  height: 23px;
+  border-top: 1px solid rgba(242, 205, 142, 0.9);
+  border-right: 1px solid rgba(242, 205, 142, 0.9);
+  pointer-events: none;
+}
+
+.process-grid li::after,
+.contact-detail::after {
+  border-color: rgba(169, 81, 53, 0.62);
 }
 
 .contact-detail:first-child {
@@ -1521,8 +1714,28 @@ select:invalid:not(:focus) {
 }
 
 .inquiry-result {
+  position: relative;
+  isolation: isolate;
   border-top: 1px solid var(--line);
   background: var(--ivory);
+}
+
+.inquiry-result::before {
+  content: "";
+  position: absolute;
+  top: -44px;
+  right: -36px;
+  z-index: 0;
+  width: 170px;
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: url("gathering-mark.svg") center / contain no-repeat;
+  opacity: 0.15;
+}
+
+.inquiry-result > * {
+  position: relative;
+  z-index: 1;
 }
 
 .result-heading p:last-child {
@@ -1614,6 +1827,87 @@ select:invalid:not(:focus) {
 }
 
 /* Progressive motion */
+@keyframes intro-rise {
+  from {
+    opacity: 0.45;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes photo-settle {
+  from {
+    transform: scale(1.025);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes photo-card-arrive {
+  from {
+    opacity: 0.72;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mark-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(-12deg) scale(0.78);
+  }
+
+  to {
+    opacity: var(--mark-opacity, 0.3);
+    transform: translateY(0) rotate(0) scale(1);
+  }
+}
+
+@keyframes steam-drift {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translateY(6px) rotate(var(--steam-rotation));
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateY(-7px) rotate(var(--steam-rotation));
+  }
+}
+
+@keyframes result-ready {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes process-connect {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .reveal {
   opacity: 1;
   transform: none;
@@ -1626,15 +1920,178 @@ select:invalid:not(:focus) {
 
 .reveal-enhanced .reveal {
   transition: opacity 560ms ease, transform 560ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-@media (prefers-reduced-motion: reduce) {
+.reveal-enhanced .reveal:focus-within {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0ms;
+}
+
+.inquiry-result.is-prepared {
+  animation: result-ready 440ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 801px) {
+  html.motion-capable .hero-media img,
+  html.motion-capable .events-hero-media img {
+    animation: photo-settle 1.1s var(--ease-out) both;
+  }
+
+  html.motion-capable .page-hero-image picture,
+  html.motion-capable .contact-hero-photo picture {
+    animation: photo-card-arrive 900ms var(--ease-out) 100ms both;
+  }
+
+  html.motion-capable .hero-content > *,
+  html.motion-capable .events-hero-content > *,
+  html.motion-capable .page-hero-copy > *,
+  html.motion-capable .contact-hero-copy > * {
+    animation: intro-rise 720ms var(--ease-out) both;
+  }
+
+  html.motion-capable .hero-content > :nth-child(1),
+  html.motion-capable .events-hero-content > :nth-child(1),
+  html.motion-capable .page-hero-copy > :nth-child(1),
+  html.motion-capable .contact-hero-copy > :nth-child(1) {
+    animation-delay: 80ms;
+  }
+
+  html.motion-capable .hero-content > :nth-child(2),
+  html.motion-capable .events-hero-content > :nth-child(2),
+  html.motion-capable .page-hero-copy > :nth-child(2),
+  html.motion-capable .contact-hero-copy > :nth-child(2) {
+    animation-delay: 140ms;
+  }
+
+  html.motion-capable .hero-content > :nth-child(3),
+  html.motion-capable .events-hero-content > :nth-child(3),
+  html.motion-capable .page-hero-copy > :nth-child(3),
+  html.motion-capable .contact-hero-copy > :nth-child(3) {
+    animation-delay: 220ms;
+  }
+
+  html.motion-capable .hero-content > :nth-child(4),
+  html.motion-capable .events-hero-content > :nth-child(4),
+  html.motion-capable .page-hero-copy > :nth-child(4),
+  html.motion-capable .contact-hero-copy > :nth-child(4) {
+    animation-delay: 300ms;
+  }
+
+  html.motion-capable .hero-content > :nth-child(5) {
+    animation-delay: 380ms;
+  }
+
+  html.motion-capable .hero::after,
+  html.motion-capable .events-hero::after,
+  html.motion-capable .page-hero::after,
+  html.motion-capable .contact-hero::before {
+    animation: mark-arrive 960ms var(--ease-out) 240ms both;
+  }
+
+  html.motion-rich .food-steam i {
+    --steam-rotation: 10deg;
+    animation: steam-drift 3s ease-in-out infinite;
+  }
+
+  html.motion-rich .food-steam i:nth-child(2) {
+    --steam-rotation: -6deg;
+    animation-delay: -1s;
+  }
+
+  html.motion-rich .food-steam i:nth-child(3) {
+    --steam-rotation: 13deg;
+    animation-delay: -2s;
+  }
+
+  html.motion-paused .food-steam i {
+    animation-play-state: paused;
+  }
+
+  html.motion-capable.reveal-enhanced .process-grid:has(.reveal:not(.visible))::before {
+    transform: scaleX(0);
+  }
+
+  html.motion-capable.reveal-enhanced .process-grid:has(.reveal.visible)::before {
+    animation: process-connect 760ms var(--ease-out) 120ms both;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.motion-capable .button::after,
+  html.motion-capable button.button::after {
+    transition: transform 460ms var(--ease-out);
+  }
+
+  html.motion-capable .button:hover::after,
+  html.motion-capable button.button:hover::after {
+    transform: translateX(560%) skewX(-18deg);
+  }
+
+  html.motion-capable .food-card,
+  html.motion-capable .collection-card,
+  html.motion-capable .process-grid li {
+    transition: transform 260ms var(--ease-out);
+  }
+
+  html.motion-capable .food-card:hover,
+  html.motion-capable .collection-card:hover,
+  html.motion-capable .process-grid li:hover {
+    transform: translateY(-4px);
+  }
+
+  html.motion-capable .food-card img,
+  html.motion-capable .collection-card img,
+  html.motion-capable .event-option-media img {
+    transition: transform 480ms var(--ease-out);
+  }
+
+  html.motion-capable .food-card:hover img,
+  html.motion-capable .collection-card:hover img,
+  html.motion-capable .event-option-media:hover img {
+    transform: scale(1.025);
+  }
+
+  html.motion-capable .gallery-tile:hover img {
+    transform: scale(1.035);
+  }
+
+  html.motion-capable .contact-detail {
+    transition: background-color 220ms ease;
+  }
+
+  html.motion-capable .contact-detail:hover {
+    background: rgba(255, 252, 246, 0.72);
+  }
+}
+
+html.visuals-lite .site-header,
+html.visuals-lite .media-note,
+html.visuals-lite .gallery-tile > span,
+html.visuals-lite .mobile-actions,
+html.visuals-lite .gallery-dialog::backdrop {
+  backdrop-filter: none;
+}
+
+html.visuals-lite .gallery-tile img {
+  transition: none;
+}
+
+html.visuals-lite .gallery-tile:hover img {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce), (update: slow) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 
   .reveal-enhanced .reveal:not(.visible) {
@@ -1743,6 +2200,25 @@ select:invalid:not(:focus) {
     width: min(var(--max), calc(100% - 32px));
   }
 
+  .hero::after,
+  .events-hero::after,
+  .page-hero::after,
+  .contact-hero::before {
+    width: 190px;
+  }
+
+  .hero::after,
+  .events-hero::after {
+    --mark-opacity: 0.24;
+    right: -72px;
+  }
+
+  .page-hero::after,
+  .contact-hero::before {
+    --mark-opacity: 0.17;
+    right: -82px;
+  }
+
   .hero {
     min-height: 720px;
   }
@@ -1777,6 +2253,10 @@ select:invalid:not(:focus) {
   .food-grid,
   .process-grid {
     grid-template-columns: 1fr;
+  }
+
+  .process-grid::before {
+    display: none;
   }
 
   .food-card img {
@@ -1829,6 +2309,13 @@ select:invalid:not(:focus) {
     max-width: 560px;
   }
 
+  .food-steam {
+    top: -14px;
+    left: 54px;
+    transform: scale(0.88);
+    transform-origin: bottom left;
+  }
+
   .contact-detail {
     min-height: 0;
   }
@@ -1841,6 +2328,17 @@ select:invalid:not(:focus) {
 @media (max-width: 640px) {
   body {
     padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  }
+
+  .site-header,
+  .mobile-actions {
+    backdrop-filter: none;
+  }
+
+  .page-hero::after,
+  .contact-hero::before,
+  .food-steam {
+    display: none;
   }
 
   h1 {
@@ -1924,7 +2422,11 @@ select:invalid:not(:focus) {
   }
 
   .page-hero {
-    padding: 62px 0;
+    padding: 44px 0 56px;
+  }
+
+  .page-hero-actions {
+    margin-top: 24px;
   }
 
   .page-hero-image {
