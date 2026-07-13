@@ -1,1 +1,6 @@
 .owner-private/
+node_modules/
+.env
+.env.*
+!.env.example
+supabase/.temp/

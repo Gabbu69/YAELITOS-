@@ -1,0 +1,20 @@
+{
+  "name": "yaelitos-restaurant",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Static Yaelitos customer website and Supabase-backed staff booking dashboard.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "check:edge": "node scripts/check-edge.mjs",
+    "preview": "node scripts/serve.mjs",
+    "supabase": "supabase"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1",
+    "supabase": "2.109.1"
+  }
+}

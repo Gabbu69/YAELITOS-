@@ -1,44 +1,84 @@
-# Yaelitos Restaurant Website
+# Yaelitos Restaurant Website and Booking Dashboard
 
-A premium, mobile-first static website for Yaelitos Restaurant. It introduces the food and event services, then helps customers send a complete inquiry through the restaurant's existing Messenger, SMS, or phone workflow.
+A mobile-first static customer website with a Supabase-backed booking workflow and private staff dashboard. Customers can send complete requests; Yaelitos staff organize and update them without online ordering or automatic booking confirmation.
 
-## Customer Pages
+## Customer and Staff Pages
 
-- `index.html` - Home, restaurant story, trust details, highlights, and gallery
-- `menu.html` - Food highlights
-- `private-events.html` - Private room and catering/group-meal inquiries
-- `contact.html` - Visit information, directions, and the guided booking form
+- `index.html` — home, story, trust details, highlights, and gallery
+- `menu.html` — food highlights
+- `private-events.html` — private room and catering/group meals
+- `contact.html` — visit details and the booking request form
+- `privacy.html` — booking-data notice and 12-month retention summary
+- `staff/` — invite-only owner/staff booking dashboard
 
-The former About, Gallery, VIP Room, and Catering URLs remain as lightweight redirects so old links still reach the correct content.
+Legacy About, Gallery, VIP Room, and Catering URLs remain lightweight redirects.
 
-## How Inquiries Work
+## Booking Workflow
 
-The guided form prepares a readable message from the customer's details. Its main action copies the details and opens Facebook Messenger. SMS and click-to-call remain available as fallbacks.
+The customer form validates the request, completes a Cloudflare Turnstile check, and calls the public `submit-booking` Supabase Edge Function. The function validates again, applies idempotency and per-IP rate limiting, then stores a Pending record. The browser has no direct anonymous table access.
 
-The website does not receive, store, or confirm the request. A request is confirmed only after Yaelitos replies. The short daily workflow for nontechnical staff is in [`STAFF-GUIDE.md`](STAFF-GUIDE.md).
+After saving, the customer sees a request reference and may optionally copy the details into Messenger, send them by SMS, or call. If storage fails, the form input remains and the contact fallbacks are still available. Nothing automatically confirms a booking or sends customer notifications.
 
-## Business Information
+Authenticated staff can view records and update statuses. Owners can also manage staff access, export filtered CSV, view full activity, and anonymize customer details. See [`STAFF-GUIDE.md`](STAFF-GUIDE.md).
 
-`assets/site-config.js` is the source of truth for repeated business details. Its sections contain:
+## Local Setup
 
-- `business` - name, tagline, phone links, address, and directions
-- `facebook` - Page and Messenger links plus dated trust labels
-- `announcement` - an optional site-wide notice, label, and link
+Install exact dependencies and build the static bundles:
 
-Update this file rather than repeating a new phone number, address, or social link across multiple pages. Page-specific food or event copy stays in its relevant HTML file. Approved restaurant photos belong in `assets/media/`.
+```powershell
+pnpm install --frozen-lockfile
+pnpm build
+```
 
-Facebook content is a curated, one-time part of the site; there is no live scraper or automatic feed. Day-to-day promotions should continue on Facebook.
+Copy `.env.example` values into `assets/app-config.js` for the intended environment. Only the Supabase URL, publishable key, and Turnstile site key belong in browser assets. Never place a Supabase secret/service-role key in the website.
 
-## Local Preview
-
-From the project folder, run:
+For the static preview:
 
 ```powershell
 python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Then open `http://127.0.0.1:8080/`. Use another free local port only if port 8080 is already occupied.
+Open `http://127.0.0.1:8080/` and `http://127.0.0.1:8080/staff/`.
+
+## Supabase Setup and Deployment
+
+The checked-in `supabase/` directory contains the migration, local configuration, Cron retention job, and Edge Functions.
+
+1. Create or select a client-owned Supabase project and link it with the Supabase CLI.
+2. Apply the migration and deploy `submit-booking`, `manage-staff`, and `export-bookings`.
+3. Set Edge Function secrets: `ALLOWED_ORIGINS`, `TURNSTILE_SECRET_KEY`, `RATE_LIMIT_SECRET`, and `STAFF_REDIRECT_URL`.
+4. Set the production Auth site URL and exact `/staff/` redirect URL. Keep public email signup and anonymous sign-in disabled.
+5. Create the initial owner in Supabase Auth, then insert its matching `staff_profiles` row with role `owner`.
+6. Put the project URL, current publishable key, and Turnstile site key in `assets/app-config.js`; rebuild and deploy the static site.
+7. Run Supabase security and performance advisors before launch.
+
+The initial owner profile can be inserted from the SQL editor after creating the Auth user:
+
+```sql
+insert into public.staff_profiles (user_id, email, display_name, role)
+values ('AUTH_USER_UUID', 'owner@example.com', 'Owner name', 'owner');
+```
+
+## Configuration Sources
+
+- `assets/site-config.js` — repeated restaurant, contact, social, and announcement details
+- `assets/app-config.js` — public Supabase and Turnstile browser configuration
+- Supabase Edge Function secrets — server-only credentials and allowlists
+
+Approved restaurant photos remain in `assets/media/`. No Facebook CDN URL is used.
 
 ## Intentional Boundaries
 
-The project remains plain HTML, CSS, and JavaScript. It has no backend, database, staff dashboard, customer accounts, online ordering, online payment, POS, inventory system, AI chatbot, or live Facebook scraper.
+There are no customer accounts, online ordering, payments, POS, inventory features, automatic capacity decisions, automatic confirmations, live Facebook scraper, or customer-notification automation. Promotions remain on Facebook by default.
+
+## Verification
+
+Run:
+
+```powershell
+pnpm build
+pnpm check
+supabase db reset
+```
+
+After linking a remote project, also run security/performance advisors and test the full customer-to-dashboard flow with non-production records before launch.

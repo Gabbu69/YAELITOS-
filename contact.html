@@ -52,14 +52,15 @@
       <div class="container inquiry-layout">
         <aside class="inquiry-intro reveal">
           <p class="eyebrow">One easy inquiry</p>
-          <h2>Prepare the details before Messenger opens.</h2>
-          <p class="lead">The website turns your answers into a neat message for staff. Nothing is stored or sent automatically.</p>
-          <ol class="inquiry-steps"><li><span>1</span>Complete the short form</li><li><span>2</span>Prepare and copy your message</li><li><span>3</span>Paste it in Messenger and send</li><li><span>4</span>Wait for Yaelitos to confirm</li></ol>
-          <div class="privacy-note"><strong>Your details stay with you.</strong><p>This static website does not save customer information. Data leaves your device only when you choose Messenger, SMS, or call.</p></div>
+          <h2>Send the details staff need to check.</h2>
+          <p class="lead">The website saves one organized Pending request so Yaelitos staff can review the date, time, guest count, and contact details.</p>
+          <ol class="inquiry-steps"><li><span>1</span>Complete the short form</li><li><span>2</span>Save a Pending request</li><li><span>3</span>Follow up by Messenger if you wish</li><li><span>4</span>Wait for Yaelitos to confirm</li></ol>
+          <div class="privacy-note"><strong>Your request is not an automatic booking.</strong><p>Yaelitos stores these details only to handle the request and keep booking records. Identifying details are removed 12 months after the requested date. Read the <a href="privacy.html">booking privacy notice</a>.</p></div>
         </aside>
 
         <div class="inquiry-card reveal">
-          <form class="inquiry-form" data-inquiry-form novalidate>
+          <noscript><div class="privacy-note"><strong>JavaScript is needed to save a request.</strong><p>Please contact Yaelitos through <a href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a>, SMS, or phone instead.</p></div><style>[data-booking-form]{display:none}</style></noscript>
+          <form class="inquiry-form" data-booking-form novalidate>
             <div class="form-heading"><p class="eyebrow">Tell us the essentials</p><h2>What would you like to ask about?</h2></div>
             <label class="field field-full">Inquiry type
               <select name="inquiry-type" required>
@@ -71,8 +72,8 @@
               </select>
             </label>
             <div class="field-row">
-              <label class="field">Your name<input name="name" autocomplete="name" required></label>
-              <label class="field">Contact number<input name="contact-number" type="tel" inputmode="tel" autocomplete="tel" placeholder="09XX XXX XXXX" required></label>
+              <label class="field">Your name<input name="name" autocomplete="name" maxlength="100" required></label>
+              <label class="field">Contact number<input name="contact-number" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="09XX XXX XXXX" required></label>
             </div>
             <div class="field-row">
               <label class="field">Preferred date<input name="date" type="date" required></label>
@@ -80,23 +81,25 @@
             </div>
             <div class="field-row">
               <label class="field">Number of guests<input name="guest-count" type="number" min="1" inputmode="numeric" required></label>
-              <label class="field">Occasion <span class="optional">Optional</span><input name="occasion" placeholder="Family meal, birthday, meeting"></label>
+              <label class="field">Occasion <span class="optional">Optional</span><input name="occasion" maxlength="100" placeholder="Family meal, birthday, meeting"></label>
             </div>
-            <label class="field field-full">Useful notes <span class="optional">Optional</span><textarea name="notes" rows="5" placeholder="Food questions, preferred setup, location, or anything staff should know"></textarea></label>
-            <p class="form-fine-print">Submitting this form prepares a message only. It does not create or confirm a reservation.</p>
+            <label class="field field-full">Useful notes <span class="optional">Optional</span><textarea name="notes" rows="5" maxlength="1000" placeholder="Food questions, preferred setup, location, or anything staff should know"></textarea></label>
+            <div class="turnstile-wrap" data-turnstile aria-label="Security check"></div>
+            <p class="form-fine-print">By submitting, you allow Yaelitos to store and use these details to respond to this request. It remains Pending until staff checks availability and replies.</p>
             <div class="form-status" data-inquiry-status role="status" aria-live="polite"></div>
-            <button class="button button-dark button-full" type="submit">Prepare my message</button>
+            <button class="button button-dark button-full" type="submit">Save my Pending request</button>
           </form>
 
           <section class="inquiry-result" data-inquiry-result hidden aria-labelledby="prepared-message-title">
-            <div class="result-heading"><p class="eyebrow">Ready to send</p><h2 id="prepared-message-title">Your prepared message</h2><p>Review it, then choose how to contact Yaelitos.</p></div>
+            <div class="result-heading"><p class="eyebrow">Request received</p><h2 id="prepared-message-title">Pending — waiting for Yaelitos</h2><p>Reference: <strong data-booking-reference>Not saved</strong></p></div>
+            <div class="reference-panel" data-reference-panel><strong>Not yet confirmed</strong><p>Yaelitos must check the request and reply before it becomes a confirmed booking.</p></div>
             <label class="field field-full">Message<textarea class="message-output" data-message-output rows="11" readonly></textarea></label>
             <div class="result-actions">
               <a class="button button-messenger" data-copy-messenger href="https://m.me/61557367387632" target="_blank" rel="noopener">Copy details &amp; open Messenger</a>
               <a class="button button-outline" data-sms-link href="sms:+639120593992">Send by SMS</a>
               <a class="text-link" data-call-link href="tel:+639120593992">Call Yaelitos instead ↗</a>
             </div>
-            <p class="action-status" data-action-status role="status" aria-live="polite">Nothing has been sent yet.</p>
+            <p class="action-status" data-action-status role="status" aria-live="polite">Your request is Pending until Yaelitos replies.</p>
           </section>
         </div>
       </div>
@@ -117,9 +120,9 @@
       <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a></div>
       <div><h2>Connect</h2><a data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span></a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Facebook Messenger</a><a data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Official Facebook page</a></div>
     </div>
-    <div class="container footer-bottom"><span>© 2026 Yaelitos</span><span>Requests are confirmed only after Yaelitos replies.</span></div>
+    <div class="container footer-bottom"><span>© 2026 Yaelitos</span><a href="privacy.html">Booking privacy</a><span>Requests are confirmed only after Yaelitos replies.</span></div>
   </footer>
   <div class="mobile-actions" aria-label="Quick contact"><a data-config-href="business.phoneHref" href="tel:+639120593992">Call</a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a></div>
-  <script src="assets/site-config.js"></script><script src="assets/site.js"></script>
+  <script src="assets/site-config.js"></script><script src="assets/app-config.js"></script><script src="assets/site.js"></script><script src="assets/customer-booking.js"></script>
 </body>
 </html>

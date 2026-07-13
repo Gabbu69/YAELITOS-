@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d2d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Staff Bookings | Yaelitos</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/staff.css">
+</head>
+<body>
+  <a class="skip-link" href="#staff-main">Skip to dashboard</a>
+
+  <main id="staff-main">
+    <section class="auth-screen" data-auth-screen>
+      <div class="auth-brand">
+        <a href="../index.html" aria-label="Return to the Yaelitos website">
+          <span>Yaelitos</span>
+          <small>Your Second Home</small>
+        </a>
+      </div>
+
+      <div class="auth-card" data-login-panel>
+        <p class="eyebrow">Private staff access</p>
+        <h1>Booking dashboard</h1>
+        <p>Sign in with the email address invited by the owner.</p>
+        <form data-login-form>
+          <label>Email address<input name="email" type="email" autocomplete="username" maxlength="254" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" minlength="10" required></label>
+          <p class="status" data-login-status role="status" aria-live="polite"></p>
+          <button class="button button-primary" type="submit">Sign in</button>
+          <button class="button-link" type="button" data-show-recovery>Forgot password?</button>
+        </form>
+      </div>
+
+      <div class="auth-card" data-recovery-panel hidden>
+        <p class="eyebrow">Account recovery</p>
+        <h1>Reset your password</h1>
+        <p>We will send a secure recovery link to your staff email address.</p>
+        <form data-recovery-form>
+          <label>Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+          <p class="status" data-recovery-status role="status" aria-live="polite"></p>
+          <button class="button button-primary" type="submit">Send recovery link</button>
+          <button class="button-link" type="button" data-show-login>Back to sign in</button>
+        </form>
+      </div>
+
+      <div class="auth-card" data-password-panel hidden>
+        <p class="eyebrow">Secure your account</p>
+        <h1>Choose a password</h1>
+        <p>Use at least 10 characters with uppercase and lowercase letters and a number.</p>
+        <form data-password-form>
+          <label>New password<input name="password" type="password" autocomplete="new-password" minlength="10" required></label>
+          <label>Confirm password<input name="confirmation" type="password" autocomplete="new-password" minlength="10" required></label>
+          <p class="status" data-password-status role="status" aria-live="polite"></p>
+          <button class="button button-primary" type="submit">Save password</button>
+        </form>
+      </div>
+
+      <p class="auth-help">This dashboard contains customer contact details. Use only an approved staff device and sign out when finished.</p>
+    </section>
+
+    <section class="dashboard" data-dashboard hidden>
+      <header class="dashboard-header">
+        <div class="dashboard-brand"><span>Yaelitos</span><small>Staff bookings</small></div>
+        <div class="staff-identity">
+          <div><strong data-staff-name>Staff member</strong><span data-staff-role>Staff</span></div>
+          <button class="button button-secondary button-small" type="button" data-logout>Sign out</button>
+        </div>
+      </header>
+
+      <div class="dashboard-shell">
+        <nav class="dashboard-nav" aria-label="Dashboard sections">
+          <button class="active" type="button" data-tab="bookings">Bookings</button>
+          <button type="button" data-tab="team" data-owner-only hidden>Team</button>
+          <button type="button" data-tab="activity" data-owner-only hidden>Activity</button>
+          <a href="../index.html">Customer website ↗</a>
+        </nav>
+
+        <div class="dashboard-content">
+          <section data-panel="bookings">
+            <div class="page-heading">
+              <div><p class="eyebrow">Booking records</p><h1>Requests and gatherings</h1><p>Submitting the website form creates a Pending request. Staff must reply before marking it Confirmed.</p></div>
+              <div class="heading-actions">
+                <button class="button button-secondary" type="button" data-refresh>Refresh</button>
+                <button class="button button-primary" type="button" data-export data-owner-only hidden>Export CSV</button>
+              </div>
+            </div>
+
+            <div class="summary-grid" aria-label="Booking summary">
+              <article><span>Pending</span><strong data-count-pending>—</strong></article>
+              <article><span>Today</span><strong data-count-today>—</strong></article>
+              <article><span>Upcoming</span><strong data-count-upcoming>—</strong></article>
+            </div>
+
+            <form class="filters" data-filter-form>
+              <label class="search-field">Search<input name="search" type="search" maxlength="80" placeholder="Reference, name, or contact"></label>
+              <label>Status<select name="status"><option value="">All statuses</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="rejected">Rejected</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label>
+              <label>From<input name="date-from" type="date"></label>
+              <label>To<input name="date-to" type="date"></label>
+              <div class="filter-actions"><button class="button button-primary" type="submit">Apply</button><button class="button button-secondary" type="button" data-clear-filters>Clear</button></div>
+            </form>
+
+            <p class="status page-status" data-bookings-status role="status" aria-live="polite"></p>
+            <div class="booking-table-wrap">
+              <table class="booking-table">
+                <thead><tr><th>Reference</th><th>Customer</th><th>Date and time</th><th>Guests</th><th>Status</th><th><span class="sr-only">Open</span></th></tr></thead>
+                <tbody data-booking-rows></tbody>
+              </table>
+              <div class="booking-cards" data-booking-cards></div>
+              <div class="empty-state" data-booking-empty hidden><strong>No bookings found</strong><p>Try a different search, status, or date range.</p></div>
+            </div>
+            <div class="pagination"><button type="button" class="button button-secondary button-small" data-page-prev>Previous</button><span data-page-label>Page 1</span><button type="button" class="button button-secondary button-small" data-page-next>Next</button></div>
+          </section>
+
+          <section data-panel="team" hidden>
+            <div class="page-heading"><div><p class="eyebrow">Owner controls</p><h1>Staff access</h1><p>Invite approved staff and deactivate access immediately when it is no longer needed.</p></div></div>
+            <div class="owner-grid">
+              <form class="panel-card" data-invite-form>
+                <h2>Invite staff member</h2>
+                <label>Name<input name="display-name" maxlength="100" required></label>
+                <label>Email<input name="email" type="email" maxlength="254" required></label>
+                <p class="status" data-invite-status role="status" aria-live="polite"></p>
+                <button class="button button-primary" type="submit">Send invitation</button>
+              </form>
+              <div class="panel-card team-list-card"><h2>Current staff</h2><div data-team-list></div></div>
+            </div>
+          </section>
+
+          <section data-panel="activity" hidden>
+            <div class="page-heading"><div><p class="eyebrow">Owner controls</p><h1>Important activity</h1><p>Status changes, staff access changes, exports, and anonymization events.</p></div><button class="button button-secondary" type="button" data-refresh-activity>Refresh</button></div>
+            <div class="panel-card"><div class="activity-list" data-activity-list></div></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="booking-dialog" data-booking-dialog>
+    <button class="dialog-close" type="button" data-dialog-close aria-label="Close booking details">×</button>
+    <div data-booking-detail></div>
+  </dialog>
+
+  <script src="../assets/app-config.js"></script>
+  <script src="../assets/staff-app.js"></script>
+</body>
+</html>
