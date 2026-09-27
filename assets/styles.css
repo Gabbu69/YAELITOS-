@@ -2595,6 +2595,169 @@ html.visuals-lite .gallery-tile:hover img {
   font-weight: 700;
 }
 
+[data-published-announcement][hidden],
+[data-published-menu][hidden],
+[data-published-hours][hidden] {
+  display: none;
+}
+
+.published-announcement {
+  border-bottom: 1px solid var(--line);
+  background: #e9f0e9;
+  color: var(--forest-deep);
+}
+
+.published-announcement-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  padding-block: 13px;
+}
+
+.published-announcement p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.published-announcement a {
+  flex: 0 0 auto;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.published-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+}
+
+.published-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.published-menu-item h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.published-menu-item p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.published-menu-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.published-menu-details strong {
+  color: var(--forest);
+  font-size: 1rem;
+}
+
+.published-menu-details span {
+  color: var(--muted);
+}
+
+.published-hours-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: clamp(24px, 6vw, 80px);
+}
+
+.published-hours-layout.is-published {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+}
+
+.published-hours-card {
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.published-hours-card dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.published-hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.published-hours-row dt {
+  font-weight: 700;
+}
+
+.published-hours-row dd {
+  margin: 0;
+  text-align: right;
+}
+
+.published-hours-card p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.form-heading p a {
+  color: var(--forest);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.booking-service-warning {
+  margin: 24px 24px 0;
+  padding: 16px 18px;
+  border-left: 4px solid var(--terracotta);
+  border-radius: var(--radius-sm);
+  background: #fff1e8;
+}
+
+.booking-service-warning[hidden] {
+  display: none;
+}
+
+.booking-service-warning p {
+  margin: 4px 0 0;
+}
+
+.booking-service-warning a {
+  color: var(--forest);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .published-hours-layout.is-published {
+    grid-template-columns: 1fr;
+  }
+}
+
 .compact-hero {
   min-height: 390px;
   display: grid;

@@ -5,6 +5,7 @@ const shared = {
   minify: true,
   sourcemap: false,
   target: ["es2020"],
+  supported: { "template-literal": false },
   platform: "browser",
   legalComments: "none"
 };

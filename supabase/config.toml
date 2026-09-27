@@ -420,3 +420,9 @@ verify_jwt = true
 
 [functions.export-bookings]
 verify_jwt = true
+
+[functions.manage-booking]
+verify_jwt = true
+
+[functions.manage-content]
+verify_jwt = true

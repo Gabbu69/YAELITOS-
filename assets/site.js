@@ -81,6 +81,142 @@
     }
   }
 
+  function publishedNode(tag, className, value) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = String(value);
+    return node;
+  }
+
+  function safeAnnouncementHref(value) {
+    if (typeof value !== "string" || !value.trim()) return "";
+    try {
+      const url = new URL(value, location.href);
+      return url.protocol === "https:" || (url.protocol === "http:" && url.origin === location.origin) ? url.href : "";
+    } catch {
+      return "";
+    }
+  }
+
+  function renderAnnouncement(content) {
+    if (!content || content.enabled !== true || typeof content.text !== "string" || !content.text.trim()) return;
+    document.querySelectorAll("[data-published-announcement]").forEach((region) => {
+      const inner = publishedNode("div", "container published-announcement-inner");
+      inner.append(publishedNode("p", "", content.text.trim()));
+      const href = safeAnnouncementHref(content.href);
+      if (href && typeof content.label === "string" && content.label.trim()) {
+        const link = publishedNode("a", "text-link", content.label.trim());
+        link.href = href;
+        if (new URL(href).origin !== location.origin) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+        inner.append(link);
+      }
+      region.replaceChildren(inner);
+      region.hidden = false;
+    });
+  }
+
+  function renderMenu(content, publishedAt) {
+    const region = document.querySelector("[data-published-menu]");
+    const list = region?.querySelector("[data-published-menu-items]");
+    if (!region || !list || !Array.isArray(content?.items)) return;
+    const items = content.items.filter((item) => item && typeof item.name === "string" && item.name.trim());
+    if (!items.length) return;
+    const money = new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP", maximumFractionDigits: 2 });
+    const cards = items.map((item) => {
+      const card = publishedNode("article", "published-menu-item");
+      const heading = publishedNode("h3", "", item.name.trim());
+      card.append(heading);
+      if (typeof item.description === "string" && item.description.trim()) {
+        card.append(publishedNode("p", "", item.description.trim()));
+      }
+      const details = publishedNode("div", "published-menu-details");
+      const price = typeof item.pricePesos === "number" && Number.isFinite(item.pricePesos) && item.pricePesos >= 0
+        ? money.format(item.pricePesos) : "Ask for price";
+      details.append(publishedNode("strong", "", price));
+      details.append(publishedNode("span", "", item.available === true ? "Listed as available" : "Currently unavailable"));
+      card.append(details);
+      return card;
+    });
+    list.replaceChildren(...cards);
+    const updated = region.querySelector("[data-published-menu-date]");
+    const published = new Date(publishedAt || "");
+    if (updated && !Number.isNaN(published.getTime())) {
+      updated.textContent = `Published ${new Intl.DateTimeFormat("en-PH", { dateStyle: "medium", timeZone: "Asia/Manila" }).format(published)}. Confirm current availability with Yaelitos.`;
+    }
+    region.hidden = false;
+  }
+
+  function renderHours(content) {
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    if (!Array.isArray(content?.days) || content.days.length !== 7) return;
+    const byDay = new Map(content.days.map((item) => [item?.day, item]));
+    if (byDay.size !== 7 || days.some((day) => !byDay.has(day))) return;
+    const formatTime = (value) => {
+      if (typeof value !== "string" || !/^([01]\d|2[0-3]):[0-5]\d$/.test(value)) return "";
+      const date = new Date(`2000-01-01T${value}:00`);
+      return new Intl.DateTimeFormat("en-PH", { hour: "numeric", minute: "2-digit" }).format(date);
+    };
+    const rows = days.map((day) => {
+      const item = byDay.get(day);
+      const open = formatTime(item.open);
+      const close = formatTime(item.close);
+      if (item.closed !== true && (!open || !close)) return null;
+      const hours = item.closed === true ? "Closed" : `${open}–${close}`;
+      const row = publishedNode("div", "published-hours-row");
+      row.append(publishedNode("dt", "", day[0].toUpperCase() + day.slice(1)));
+      row.append(publishedNode("dd", "", hours));
+      return row;
+    });
+    if (rows.some((row) => !row)) return;
+    document.querySelectorAll("[data-published-hours]").forEach((region) => {
+      const list = region.querySelector("[data-published-hours-list]");
+      if (!list) return;
+      list.replaceChildren(...rows.map((row) => row.cloneNode(true)));
+      region.hidden = false;
+      region.closest(".published-hours-layout")?.classList.add("is-published");
+    });
+    const currentDay = new Intl.DateTimeFormat("en-US", { weekday: "long", timeZone: "Asia/Manila" }).format(new Date()).toLowerCase();
+    const current = byDay.get(currentDay);
+    const today = current.closed === true ? "Closed today" : `Today: ${formatTime(current.open)}–${formatTime(current.close)}`;
+    document.querySelectorAll("[data-hours-summary]").forEach((element) => {
+      element.textContent = `${today}. Please confirm holiday changes with Yaelitos.`;
+    });
+  }
+
+  async function loadPublishedContent() {
+    if (!document.querySelector("[data-published-menu], [data-published-hours], [data-published-announcement], [data-hours-summary]")) return;
+    const app = window.YAELITOS_APP_CONFIG || {};
+    const base = String(app.supabaseUrl || "").replace(/\/$/, "");
+    const key = String(app.supabasePublishableKey || "").trim();
+    if (!/^https:\/\//.test(base) || !key) return;
+    try {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 8000);
+      let response;
+      try {
+        response = await fetch(`${base}/rest/v1/site_content?select=section,content,published_at`, {
+          headers: { apikey: key, Accept: "application/json" },
+          signal: controller.signal,
+          cache: "no-store"
+        });
+      } finally {
+        window.clearTimeout(timeout);
+      }
+      if (!response.ok) return;
+      const rows = await response.json();
+      if (!Array.isArray(rows)) return;
+      const content = new Map(rows.map((row) => [row.section, row]));
+      renderAnnouncement(content.get("announcement")?.content);
+      renderMenu(content.get("menu")?.content, content.get("menu")?.published_at);
+      renderHours(content.get("hours")?.content);
+    } catch {
+      // The visible fallback tells visitors to ask Yaelitos directly.
+    }
+  }
+
   function setActiveNav() {
     const currentFile = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-links a").forEach((link) => {
@@ -507,6 +643,7 @@
 
   function start() {
     populateConfig();
+    loadPublishedContent();
     setActiveNav();
     initMenu();
     initReveal();

@@ -58,7 +58,7 @@
         </form>
       </div>
 
-      <p class="auth-help">This dashboard contains customer contact details. Use only an approved staff device and sign out when finished.</p>
+      <p class="auth-help">This dashboard contains customer contact details. Use only an approved staff device and sign out when finished. <a href="guide.html">Read the English / Filipino quick guide</a>.</p>
     </section>
 
     <section class="dashboard" data-dashboard hidden>
@@ -73,30 +73,45 @@
       <div class="dashboard-shell">
         <nav class="dashboard-nav" aria-label="Dashboard sections">
           <button class="active" type="button" data-tab="bookings">Bookings</button>
+          <button type="button" data-tab="content" data-owner-only hidden>Content</button>
           <button type="button" data-tab="team" data-owner-only hidden>Team</button>
           <button type="button" data-tab="activity" data-owner-only hidden>Activity</button>
+          <a href="guide.html">Quick guide ↗</a>
           <a href="../index.html">Customer website ↗</a>
         </nav>
 
         <div class="dashboard-content">
           <section data-panel="bookings">
             <div class="page-heading">
-              <div><p class="eyebrow">Booking records</p><h1>Requests and gatherings</h1><p>Submitting the website form creates a Pending request. Staff must reply before marking it Confirmed.</p></div>
+              <div><p class="eyebrow">Booking desk</p><h1>Requests and gatherings</h1><p>Every request starts as Pending. Reply personally, then record the outcome here.</p></div>
               <div class="heading-actions">
+                <button class="button button-primary" type="button" data-new-booking>+ Add request</button>
                 <button class="button button-secondary" type="button" data-refresh>Refresh</button>
-                <button class="button button-primary" type="button" data-export data-owner-only hidden>Export CSV</button>
+                <button class="button button-secondary" type="button" data-export data-owner-only hidden>Export CSV</button>
               </div>
             </div>
 
+            <section class="quick-guide" aria-label="How to handle a request">
+              <h2>Three steps <span>· Tatlong hakbang</span></h2>
+              <ol><li><strong>1. Open the request</strong><span>Tingnan ang detalye.</span></li><li><strong>2. Reply to the customer</strong><span>Tumawag o mag-message.</span></li><li><strong>3. Record the reply and status</strong><span>Ilagay kung kailan at paano sumagot.</span></li></ol>
+            </section>
+
             <div class="summary-grid" aria-label="Booking summary">
-              <article><span>Pending</span><strong data-count-pending>—</strong></article>
+              <article><span>Needs reply</span><strong data-count-pending>—</strong></article>
               <article><span>Today</span><strong data-count-today>—</strong></article>
               <article><span>Upcoming</span><strong data-count-upcoming>—</strong></article>
             </div>
 
+            <div class="booking-views" role="group" aria-label="Booking view">
+              <button type="button" class="active" data-booking-view="needs-reply" aria-pressed="true">Needs reply</button>
+              <button type="button" data-booking-view="today" aria-pressed="false">Today</button>
+              <button type="button" data-booking-view="upcoming" aria-pressed="false">Upcoming</button>
+              <button type="button" data-booking-view="all" aria-pressed="false">All records</button>
+            </div>
+
             <form class="filters" data-filter-form>
               <label class="search-field">Search<input name="search" type="search" maxlength="80" placeholder="Reference, name, or contact"></label>
-              <label>Status<select name="status"><option value="">All statuses</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="rejected">Rejected</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label>
+              <label>Status<select name="status"><option value="">View default</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="rejected">Rejected</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></label>
               <label>From<input name="date-from" type="date"></label>
               <label>To<input name="date-to" type="date"></label>
               <div class="filter-actions"><button class="button button-primary" type="submit">Apply</button><button class="button button-secondary" type="button" data-clear-filters>Clear</button></div>
@@ -112,6 +127,12 @@
               <div class="empty-state" data-booking-empty hidden><strong>No bookings found</strong><p>Try a different search, status, or date range.</p></div>
             </div>
             <div class="pagination"><button type="button" class="button button-secondary button-small" data-page-prev>Previous</button><span data-page-label>Page 1</span><button type="button" class="button button-secondary button-small" data-page-next>Next</button></div>
+          </section>
+
+          <section data-panel="content" hidden>
+            <div class="page-heading"><div><p class="eyebrow">Owner controls</p><h1>Website content</h1><p>Prepare a draft, then publish it when the restaurant has approved the details. Photos are handled separately.</p></div></div>
+            <p class="status page-status" data-content-status role="status" aria-live="polite"></p>
+            <div class="content-grid" data-content-editor></div>
           </section>
 
           <section data-panel="team" hidden>
@@ -137,12 +158,38 @@
     </section>
   </main>
 
-  <dialog class="booking-dialog" data-booking-dialog>
+  <dialog class="booking-dialog" data-booking-dialog aria-label="Booking details">
     <button class="dialog-close" type="button" data-dialog-close aria-label="Close booking details">×</button>
     <div data-booking-detail></div>
   </dialog>
 
+  <dialog class="booking-dialog" data-manual-dialog aria-labelledby="new-request-title">
+    <button class="dialog-close" type="button" data-manual-close aria-label="Close new request">×</button>
+    <div class="detail-shell">
+      <p class="eyebrow">Staff entry</p><h1 id="new-request-title">Add a request</h1>
+      <p>Use this for Messenger, phone, or walk-in requests. It starts as Pending.</p>
+      <form data-manual-form>
+        <div class="form-grid">
+          <label>Where did it come from?<select name="source" required><option value="messenger">Messenger</option><option value="phone">Phone</option><option value="walk_in">Walk-in</option></select></label>
+          <label>Request type<select name="inquiryType" required><option value="table">Table</option><option value="private">Private gathering</option><option value="catering">Catering / group meal</option></select></label>
+          <label>Customer name<input name="name" maxlength="100" required></label>
+          <label data-messenger-name>Messenger contact name<input name="messengerName" maxlength="100" placeholder="Name used in Messenger"></label>
+          <label data-contact-number>Phone number (if available)<input name="contactNumber" type="tel" inputmode="tel" maxlength="24" placeholder="09…"></label>
+          <label>Date<input name="date" type="date" required></label>
+          <label>Time<input name="time" type="time" required></label>
+          <label>Guests<input name="guestCount" type="number" min="1" step="1" required></label>
+          <label>Occasion (optional)<input name="occasion" maxlength="100"></label>
+          <label class="form-full">Customer request (optional)<textarea name="notes" maxlength="1000"></textarea></label>
+          <label class="form-full">Staff follow-up note (optional)<textarea name="followUpNotes" maxlength="1000" placeholder="What still needs to be checked?"></textarea></label>
+        </div>
+        <p class="status" data-manual-status role="status" aria-live="polite"></p>
+        <button class="button button-primary" type="submit">Save Pending request</button>
+      </form>
+    </div>
+  </dialog>
+
   <script src="../assets/app-config.js"></script>
+  <script src="../assets/site-config.js"></script>
   <script src="../assets/staff-app.js"></script>
 </body>
 </html>

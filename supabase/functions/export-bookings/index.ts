@@ -12,25 +12,30 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 function safeCsv(value: unknown): string {
   let text = value === null || value === undefined ? "" : String(value);
-  if (/^[=+\-@]/.test(text)) text = `'${text}`;
+  if (/^[\s\u0000-\u001f]*[=+\-@]/.test(text)) text = `'${text}`;
   return `"${text.replaceAll('"', '""')}"`;
 }
 
 function csv(rows: Record<string, unknown>[]): string {
   const headings = [
-    "Reference", "Inquiry type", "Customer name", "Contact number", "Requested date",
-    "Requested time", "Guest count", "Occasion", "Notes", "Status", "Received at"
+    "Reference", "Inquiry type", "Source", "Contact route", "Customer name", "Contact number",
+    "Messenger name", "Requested date", "Requested time", "Guest count", "Occasion", "Notes",
+    "Follow-up notes", "Status", "Received at"
   ];
   const lines = rows.map((row) => [
     row.reference,
     row.inquiry_type,
+    row.source,
+    row.contact_route,
     row.customer_name,
     row.contact_number,
+    row.messenger_name,
     row.requested_date,
     row.requested_time,
     row.guest_count,
     row.occasion,
     row.notes,
+    row.follow_up_notes,
     row.status,
     row.created_at
   ].map(safeCsv).join(","));
@@ -65,7 +70,7 @@ Deno.serve(async (req) => {
   for (let from = 0; from < 10000; from += 1000) {
     let query = auth.client
       .from("bookings")
-      .select("reference,inquiry_type,customer_name,contact_number,requested_date,requested_time,guest_count,occasion,notes,status,created_at")
+      .select("reference,inquiry_type,source,contact_route,customer_name,contact_number,messenger_name,requested_date,requested_time,guest_count,occasion,notes,follow_up_notes,status,created_at")
       .order("requested_date", { ascending: true })
       .order("requested_time", { ascending: true })
       .range(from, from + 999);
@@ -74,7 +79,7 @@ Deno.serve(async (req) => {
     if (dateTo) query = query.lte("requested_date", dateTo);
     if (search) {
       const term = `%${search}%`;
-      query = query.or(`reference.ilike.${term},customer_name.ilike.${term},contact_number.ilike.${term}`);
+      query = query.or(`reference.ilike.${term},customer_name.ilike.${term},contact_number.ilike.${term},messenger_name.ilike.${term}`);
     }
 
     const { data, error } = await query;

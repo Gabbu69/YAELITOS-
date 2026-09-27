@@ -11,6 +11,11 @@
   const formStatus = form.querySelector("[data-inquiry-status]");
   const actionStatus = result?.querySelector("[data-action-status]");
   const referenceElement = result?.querySelector("[data-booking-reference]");
+  const resultEyebrow = result?.querySelector("[data-result-eyebrow]");
+  const resultHeading = result?.querySelector("[data-result-heading]");
+  const referenceHeading = result?.querySelector("[data-reference-heading]");
+  const referenceDescription = result?.querySelector("[data-reference-description]");
+  const serviceWarning = document.querySelector("[data-booking-service-warning]");
   const copyMessenger = result?.querySelector("[data-copy-messenger]");
   const smsLink = result?.querySelector("[data-sms-link]");
   const callLink = result?.querySelector("[data-call-link]");
@@ -31,10 +36,11 @@
   }
 
   function localIsoDate(date = new Date()) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Manila", year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(date);
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    return `${values.year}-${values.month}-${values.day}`;
   }
 
   function readableDate(raw) {
@@ -124,6 +130,12 @@
     const message = bookingMessage(reference);
     output.value = message;
     result.hidden = false;
+    if (resultEyebrow) resultEyebrow.textContent = saved ? "Request received" : "Booking service unavailable";
+    if (resultHeading) resultHeading.textContent = saved ? "Pending — waiting for Yaelitos" : "Your request was not saved";
+    if (referenceHeading) referenceHeading.textContent = saved ? "Not yet confirmed" : "No online request was created";
+    if (referenceDescription) referenceDescription.textContent = saved
+      ? "Yaelitos must check the request and reply before it becomes a confirmed booking."
+      : "Contact Yaelitos directly through Messenger, SMS, or phone. Keep your details below to copy or send.";
     referenceElement.textContent = reference || "Not saved";
     referenceElement.closest("[data-reference-panel]")?.classList.toggle("is-unsaved", !saved);
     if (smsLink) {
@@ -197,10 +209,15 @@
   copyMessenger?.addEventListener("click", async () => {
     const copied = await copyText();
     setStatus(actionStatus, copied
-      ? "Details copied. Paste them into Messenger, then wait for Yaelitos to confirm."
+      ? "Details copied. Paste them into Messenger, then wait for Yaelitos to reply."
       : "Messenger opened, but automatic copy was unavailable. Copy the selected details manually.",
     copied ? "success" : "error");
   });
+
+  if (!String(appConfig.supabaseUrl || "").trim() || !String(appConfig.supabasePublishableKey || "").trim() || !String(appConfig.turnstileSiteKey || "").trim()) {
+    if (serviceWarning) serviceWarning.hidden = false;
+    if (turnstileContainer) turnstileContainer.hidden = true;
+  }
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -275,6 +292,7 @@
   });
 
   loadTurnstile().catch(() => {
+    if (serviceWarning) serviceWarning.hidden = false;
     setStatus(formStatus, "The security check could not load. You can still contact Yaelitos through Messenger, SMS, or phone.", "error");
   });
 })();
