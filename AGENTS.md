@@ -9,9 +9,9 @@ Present Yaelitos as a Filipino comfort food restaurant, private-room venue, cate
 ## Non-Negotiable Boundaries
 
 - Do not add online ordering, online payment, customer accounts, or booking confirmation automation.
-- Do not add POS, inventory, AI chatbot, or any backend beyond the approved Supabase booking workflow.
+- Do not add POS, inventory, or an AI chatbot. Supabase also stores owner-approved menu, hours, and announcement content for the static site.
 - Do not add a live Facebook scraper or automatic social feed.
-- Keep the customer pages and dashboard frontend static. Supabase is the explicitly approved backend for booking records and staff access.
+- Keep the customer pages and dashboard frontend static. Supabase is the approved backend for booking records, staff access, and owner-published website content.
 - Do not put developer notes, sales quotes, or owner-only materials on customer pages. Keep local owner materials under the ignored `.owner-private/` folder.
 - Do not invent food names, prices, hours, capacity, equipment, packages, policies, testimonials, or service guarantees.
 
@@ -21,7 +21,7 @@ Present Yaelitos as a Filipino comfort food restaurant, private-room venue, cate
 - `menu.html` - Food highlights
 - `private-events.html` - Private room and catering/group meals
 - `contact.html` - Visit information, directions, and one guided inquiry form
-- `assets/site-config.js` - source of truth for repeated business and social details
+- `assets/site-config.js` - source of truth for stable business and social details
 - `assets/site.js` - navigation, progressive reveal, gallery dialog, configuration binding, mobile actions, and inquiry behavior
 - `assets/app-config.js` - public Supabase URL/publishable key and Turnstile site key only
 - `assets/styles.css` - visual design and responsive layout
@@ -29,6 +29,7 @@ Present Yaelitos as a Filipino comfort food restaurant, private-room venue, cate
 - `staff/` - static invite-only owner/staff dashboard
 - `src/` - customer booking and staff dashboard source before bundling
 - `supabase/` - migrations, RLS/grants, Cron retention, and Edge Functions
+- `scripts/build-deploy.mjs` and `vercel.json` - allowlisted static deployment and public browser configuration from environment values
 
 Preserve these legacy routes as lightweight redirects:
 
@@ -39,13 +40,12 @@ Preserve these legacy routes as lightweight redirects:
 
 ## Configuration Source of Truth
 
-Keep repeated facts in `assets/site-config.js` under these sections and keys:
+Keep stable repeated facts in `assets/site-config.js` under these sections and keys:
 
 - `business`: `name`, `tagline`, `phoneDisplay`, `phoneHref`, `smsHref`, `address`, `directionsUrl`
-- `facebook`: `pageUrl`, `messengerUrl`, `followersLabel`, `recommendationLabel`, `checkedOn`
-- `announcement`: `enabled`, `text`, `label`, `href`
+- `facebook`: `pageUrl`, `messengerUrl`
 
-Shared facts should be changed in the configuration rather than edited separately on every page. Keep valid HTML fallback text so essential contact information remains usable if JavaScript is unavailable. Date any Facebook follower or recommendation labels, and do not silently present old counts as live data.
+Owner-approved menu items and prices, seven-day hours, and one announcement are drafted and published through the owner Content tab. Public pages read published Supabase rows only and show an honest contact fallback when rows are absent or unavailable. Shared contact facts should be changed in the static configuration rather than edited separately on every page. Keep valid HTML fallback text so essential contact information remains usable if JavaScript is unavailable. Do not display stale Facebook follower or recommendation counts.
 
 Current core details are:
 
@@ -55,7 +55,7 @@ Current core details are:
 - Contact number: 0912-059-3992
 - Category: Filipino comfort food, private room, catering, and private gatherings
 
-Exact hours, food names/prices, room capacity/features, event inclusions, and policies require owner approval before publication.
+Exact hours, food names/prices, room capacity/features, event inclusions, and policies require owner approval before publication. Google Maps and Facebook currently disagree about opening hours; do not seed either set as fact.
 
 ## Inquiry Behavior
 
@@ -70,7 +70,7 @@ Do not clear the customer's input automatically. Provide a manual-copy option wh
 
 ## Staff Workflow
 
-Staff use the invite-only `/staff/` dashboard and follow `STAFF-GUIDE.md`. They still reply personally through the appropriate customer channel before recording Confirmed or Rejected. Promotions remain on Facebook by default; the dashboard does not edit website content.
+Staff use the invite-only `/staff/` dashboard and follow `STAFF-GUIDE.md`. They check Needs reply at opening and before closing, including overdue Pending requests, and can record Messenger, phone, and walk-in inquiries manually. They still reply personally through the appropriate customer channel and record how and when they replied before marking Confirmed or Rejected. The dashboard never sends customer messages. The owner can draft, publish, and withdraw approved menu, hours, and announcement content; ordinary staff cannot edit it. Promotions remain on Facebook by default.
 
 ## Design and Content Notes
 
@@ -91,5 +91,8 @@ Staff use the invite-only `/staff/` dashboard and follow `STAFF-GUIDE.md`. They 
 - Confirm shared contact/social values match `assets/site-config.js` and essential fallback content works without JavaScript.
 - Confirm all media paths resolve and no Facebook CDN URL is used.
 - Confirm anonymous Data API access is denied, active staff RLS works, inactive staff are blocked, and owner-only actions reject staff users.
+- Confirm anonymous content reads expose published fields only, drafts stay private, and unpublishing returns the website to its contact fallback.
+- Confirm manual intake supports Messenger names without phone numbers, overdue Pending requests stay visible, and Confirmed/Rejected require a recorded reply.
 - Test idempotency, Turnstile failure, rate limiting, status conflicts, CSV formula escaping, activity logging, and 12-month anonymization.
+- Confirm `/staff/` and `/privacy.html` exist in the allowlisted deployment output; production builds must have a complete public app configuration.
 - Check for console errors and broken internal links.

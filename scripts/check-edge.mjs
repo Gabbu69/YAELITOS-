@@ -10,6 +10,8 @@ await build({
     "supabase/functions/submit-booking/index.ts",
     "supabase/functions/manage-staff/index.ts",
     "supabase/functions/export-bookings/index.ts",
+    "supabase/functions/manage-booking/index.ts",
+    "supabase/functions/manage-content/index.ts",
   ],
   bundle: true,
   write: false,

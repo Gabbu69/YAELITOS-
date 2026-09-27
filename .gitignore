@@ -1,5 +1,8 @@
 .owner-private/
 node_modules/
+dist/
+.vercel/
+.playwright-cli/
 .env
 .env.*
 !.env.example

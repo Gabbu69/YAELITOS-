@@ -27,6 +27,8 @@
     </div>
   </header>
 
+  <div class="published-announcement" data-published-announcement hidden></div>
+
   <main id="main-content">
     <section class="page-hero page-hero-food">
       <div class="container page-hero-grid">
@@ -48,9 +50,16 @@
       <div class="container food-notice-inner"><strong>Looking for today's menu?</strong><span>Message Yaelitos for current choices, portions, and prices.</span><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Open Messenger ↗</a></div>
     </section>
 
+    <section class="section section-soft published-menu-section" data-published-menu hidden>
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Owner-published menu</p><h2>Food listed by Yaelitos</h2><p data-published-menu-date>Confirm current prices and availability with Yaelitos before visiting.</p></div>
+        <div class="published-menu-grid" data-published-menu-items></div>
+      </div>
+    </section>
+
     <section class="section" id="highlights">
       <div class="container">
-        <div class="section-heading reveal"><p class="eyebrow">Food highlights</p><h2>Familiar flavors, made for every kind of gathering.</h2><p>No invented menu claims—just a curated look at real Yaelitos food photography.</p></div>
+        <div class="section-heading reveal"><p class="eyebrow">Food highlights</p><h2>Familiar flavors, made for every kind of gathering.</h2><p>These photos show Yaelitos food. Ask the team to identify today's dishes and confirm availability.</p></div>
         <div class="food-collection">
           <article class="collection-card collection-card-large reveal">
             <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126083363-640.webp 640w, assets/media/FB_IMG_1780126083363-1280.webp 1280w" sizes="(max-width: 760px) 100vw, 58vw"><img src="assets/media/FB_IMG_1780126083363.jpg" width="1491" height="1077" alt="Crisp roasted meat served on banana leaf" loading="lazy" decoding="async"></picture>
@@ -83,13 +92,13 @@
           <h2>Ask today. Arrive knowing what to expect.</h2>
           <p class="lead">The fastest way to check current food, prices, and availability is to message the team directly.</p>
           <ul class="check-list"><li>Tell us when you plan to visit</li><li>Share your guest count</li><li>Ask about today's food choices</li><li>Wait for the Yaelitos team to confirm</li></ul>
-          <a class="button button-dark" href="contact.html#inquiry">Prepare an inquiry</a>
+          <a class="button button-dark" href="contact.html#inquiry">Send a table request</a>
         </div>
       </div>
     </section>
 
     <section class="visit-band">
-      <div class="container visit-band-grid reveal"><div><p class="eyebrow light">Ready to gather?</p><h2>Ask what the kitchen is serving today.</h2><p>Nothing is sent until you choose Messenger, SMS, or call.</p></div><div class="visit-band-actions"><a class="button button-gold" href="contact.html#inquiry">Start an inquiry</a><a class="text-link light-link" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">See Facebook updates <span aria-hidden="true">↗</span></a></div></div>
+      <div class="container visit-band-grid reveal"><div><p class="eyebrow light">Ready to gather?</p><h2>Ask what the kitchen is serving today.</h2><p>Send a Pending table or group request. Yaelitos will reply to confirm the details.</p></div><div class="visit-band-actions"><a class="button button-gold" href="contact.html#inquiry">Send a booking request</a><a class="text-link light-link" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">See Facebook updates <span aria-hidden="true">↗</span></a></div></div>
     </section>
   </main>
 
@@ -97,12 +106,12 @@
     <div class="container footer-grid">
       <div class="footer-brand"><a class="brand brand-footer" href="index.html"><span class="brand-name" data-config="business.name">Yaelitos</span><span class="brand-tagline" data-config="business.tagline">Your Second Home</span></a><p>Warm food, welcoming tables, and gatherings in M'lang.</p></div>
       <div><h2>Explore</h2><a href="menu.html">Food highlights</a><a href="private-events.html">Private events</a><a href="contact.html">Visit / Book</a></div>
-      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a></div>
+      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://maps.app.goo.gl/E2DxXaYfcfcTgu41A" target="_blank" rel="noopener">Get directions</a></div>
       <div><h2>Connect</h2><a data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span></a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Facebook Messenger</a><a data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Official Facebook page</a></div>
     </div>
     <div class="container footer-bottom"><span>© 2026 Yaelitos</span><a href="privacy.html">Booking privacy</a><span>Requests are confirmed only after Yaelitos replies.</span></div>
   </footer>
   <div class="mobile-actions" aria-label="Quick contact"><a data-config-href="business.phoneHref" href="tel:+639120593992">Call</a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a></div>
-  <script src="assets/site-config.js"></script><script src="assets/site.js"></script>
+  <script src="assets/site-config.js"></script><script src="assets/app-config.js"></script><script src="assets/site.js"></script>
 </body>
 </html>

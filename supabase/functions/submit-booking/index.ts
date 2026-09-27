@@ -8,7 +8,7 @@ import {
   requestOrigin
 } from "../_shared/common.ts";
 
-const INQUIRY_TYPES = new Set(["table", "private", "catering", "general"]);
+const INQUIRY_TYPES = new Set(["table", "private", "catering"]);
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
@@ -72,6 +72,8 @@ function validate(payload: BookingInput): { value?: Record<string, unknown>; fie
       inquiry_type: inquiryType,
       customer_name: name,
       contact_number: contactNumber,
+      source: "web",
+      contact_route: "phone",
       requested_date: date,
       requested_time: time,
       guest_count: guestCount,

@@ -5,6 +5,7 @@
   "description": "Static Yaelitos customer website and Supabase-backed staff booking dashboard.",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:deploy": "node scripts/build-deploy.mjs",
     "check": "node scripts/check.mjs",
     "check:edge": "node scripts/check-edge.mjs",
     "preview": "node scripts/serve.mjs",

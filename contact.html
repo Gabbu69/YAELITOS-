@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173d2d">
   <title>Visit and Book | Yaelitos M'lang</title>
-  <meta name="description" content="Find Yaelitos in M'lang, call the restaurant, or prepare a table, private-event, or group-meal inquiry for Messenger.">
+  <meta name="description" content="Find Yaelitos in M'lang and save a Pending request for a table, private gathering, or group meal. Staff reply personally to confirm.">
   <meta property="og:title" content="Visit and Book | Yaelitos">
-  <meta property="og:description" content="Get directions and prepare one clear Messenger-first inquiry for Yaelitos.">
+  <meta property="og:description" content="Get directions and send a Pending request that Yaelitos staff review and confirm personally.">
   <meta property="og:image" content="https://raw.githubusercontent.com/Gabbu69/YAELITOS-/main/assets/media/FB_IMG_1780126105313.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -25,14 +25,16 @@
     </div>
   </header>
 
+  <div class="published-announcement" data-published-announcement hidden></div>
+
   <main id="main-content">
     <section class="contact-hero">
       <div class="container contact-hero-grid">
         <div class="contact-hero-copy reveal">
           <p class="eyebrow light">Visit / Book</p>
           <h1>Everything you need to reach Yaelitos.</h1>
-          <p>Get directions, call the restaurant, or prepare one clear message for a table, private gathering, or group meal.</p>
-          <div class="contact-hero-actions"><a class="button button-gold" href="#inquiry">Prepare an inquiry</a><a class="text-link light-link" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a></div>
+          <p>Get directions, call the restaurant, or send a Pending request for a table, private gathering, or group meal.</p>
+          <div class="contact-hero-actions"><a class="button button-gold" href="#inquiry">Send a booking request</a><a class="text-link light-link" data-config-href="business.directionsUrl" href="https://maps.app.goo.gl/E2DxXaYfcfcTgu41A" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="contact-hero-photo reveal">
           <picture><source type="image/webp" srcset="assets/media/FB_IMG_1780126105313-640.webp 640w, assets/media/FB_IMG_1780126105313-1280.webp 1280w" sizes="(max-width: 800px) 100vw, 45vw"><img src="assets/media/FB_IMG_1780126105313.jpg" width="1320" height="1260" alt="The warm Yaelitos dining room prepared for guests" fetchpriority="high"></picture>
@@ -42,16 +44,23 @@
 
     <section class="contact-details-section">
       <div class="container contact-details-grid">
-        <article class="contact-detail reveal"><span>01</span><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="text-link" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Open directions ↗</a></article>
+        <article class="contact-detail reveal"><span>01</span><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="text-link" data-config-href="business.directionsUrl" href="https://maps.app.goo.gl/E2DxXaYfcfcTgu41A" target="_blank" rel="noopener">Open directions ↗</a></article>
         <article class="contact-detail reveal"><span>02</span><h2>Call</h2><p>For quick questions or a same-day follow-up.</p><a class="text-link" data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span> ↗</a></article>
         <article class="contact-detail reveal"><span>03</span><h2>Latest updates</h2><p>Check the official page for current food, announcements, and operating updates.</p><a class="text-link" data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Visit Facebook ↗</a></article>
+      </div>
+    </section>
+
+    <section class="section section-soft published-hours-section">
+      <div class="container published-hours-layout">
+        <div><p class="eyebrow">Plan your visit</p><h2>Opening hours</h2><p data-hours-summary>Hours have not been confirmed for this website. Message or call Yaelitos before visiting.</p></div>
+        <div class="published-hours-card" data-published-hours hidden><dl data-published-hours-list></dl><p>Hours may change on holidays. Please check with Yaelitos before travelling.</p></div>
       </div>
     </section>
 
     <section class="section inquiry-section" id="inquiry" data-inquiry>
       <div class="container inquiry-layout">
         <aside class="inquiry-intro reveal">
-          <p class="eyebrow">One easy inquiry</p>
+          <p class="eyebrow">Booking requests</p>
           <h2>Send the details staff need to check.</h2>
           <p class="lead">The website saves one organized Pending request so Yaelitos staff can review the date, time, guest count, and contact details.</p>
           <ol class="inquiry-steps"><li><span>1</span>Complete the short form</li><li><span>2</span>Save a Pending request</li><li><span>3</span>Follow up by Messenger if you wish</li><li><span>4</span>Wait for Yaelitos to confirm</li></ol>
@@ -59,16 +68,16 @@
         </aside>
 
         <div class="inquiry-card reveal">
-          <noscript><div class="privacy-note"><strong>JavaScript is needed to save a request.</strong><p>Please contact Yaelitos through <a href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a>, SMS, or phone instead.</p></div><style>[data-booking-form]{display:none}</style></noscript>
+          <noscript><div class="privacy-note"><strong>JavaScript is needed to save a request.</strong><p>Please contact Yaelitos through <a href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a>, <a href="sms:+639120593992">SMS</a>, or <a href="tel:+639120593992">phone</a> instead. No booking has been saved.</p></div><style>[data-booking-form]{display:none}</style></noscript>
+          <div class="booking-service-warning" data-booking-service-warning hidden role="status"><strong>Online requests are unavailable right now.</strong><p>The form can still prepare details for you to copy, but it cannot save a booking. Use <a href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a>, <a href="sms:+639120593992">SMS</a>, or <a href="tel:+639120593992">phone</a> to contact Yaelitos directly.</p></div>
           <form class="inquiry-form" data-booking-form novalidate>
-            <div class="form-heading"><p class="eyebrow">Tell us the essentials</p><h2>What would you like to ask about?</h2></div>
+            <div class="form-heading"><p class="eyebrow">Tell us the essentials</p><h2>What are you planning?</h2><p>For a general question without a date or guest count, use <a href="https://m.me/61557367387632" target="_blank" rel="noopener">Messenger</a> or call <a href="tel:+639120593992">0912-059-3992</a>.</p></div>
             <label class="field field-full">Inquiry type
               <select name="inquiry-type" required>
                 <option value="">Choose one</option>
                 <option value="table">Table request</option>
                 <option value="private">Private gathering</option>
                 <option value="catering">Group meal / catering</option>
-                <option value="general">General question</option>
               </select>
             </label>
             <div class="field-row">
@@ -91,8 +100,8 @@
           </form>
 
           <section class="inquiry-result" data-inquiry-result hidden aria-labelledby="prepared-message-title">
-            <div class="result-heading"><p class="eyebrow">Request received</p><h2 id="prepared-message-title">Pending — waiting for Yaelitos</h2><p>Reference: <strong data-booking-reference>Not saved</strong></p></div>
-            <div class="reference-panel" data-reference-panel><strong>Not yet confirmed</strong><p>Yaelitos must check the request and reply before it becomes a confirmed booking.</p></div>
+            <div class="result-heading"><p class="eyebrow" data-result-eyebrow>Request received</p><h2 id="prepared-message-title" data-result-heading>Pending — waiting for Yaelitos</h2><p>Reference: <strong data-booking-reference>Not saved</strong></p></div>
+            <div class="reference-panel" data-reference-panel><strong data-reference-heading>Not yet confirmed</strong><p data-reference-description>Yaelitos must check the request and reply before it becomes a confirmed booking.</p></div>
             <label class="field field-full">Message<textarea class="message-output" data-message-output rows="11" readonly></textarea></label>
             <div class="result-actions">
               <a class="button button-messenger" data-copy-messenger href="https://m.me/61557367387632" target="_blank" rel="noopener">Copy details &amp; open Messenger</a>
@@ -107,8 +116,8 @@
 
     <section class="map-section">
       <div class="container map-grid">
-        <div class="map-copy reveal"><p class="eyebrow">Find us in M'lang</p><h2>Your table is closer than you think.</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="button button-dark" data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Open full directions</a></div>
-        <div class="map-frame reveal"><iframe title="Map showing Yaelitos in M'lang" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Rizal%20St.%2C%20Poblacion%20A%2C%20M%27lang%2C%20Philippines%209402&output=embed"></iframe></div>
+        <div class="map-copy reveal"><p class="eyebrow">Find us in M'lang</p><h2>Your table is closer than you think.</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a class="button button-dark" data-config-href="business.directionsUrl" href="https://maps.app.goo.gl/E2DxXaYfcfcTgu41A" target="_blank" rel="noopener">Open full directions</a></div>
+        <div class="map-frame reveal"><iframe title="Map showing the Yaelitos location in M'lang" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=6.9471318%2C124.8828163&amp;output=embed"></iframe></div>
       </div>
     </section>
   </main>
@@ -117,7 +126,7 @@
     <div class="container footer-grid">
       <div class="footer-brand"><a class="brand brand-footer" href="index.html"><span class="brand-name" data-config="business.name">Yaelitos</span><span class="brand-tagline" data-config="business.tagline">Your Second Home</span></a><p>Warm food, welcoming tables, and gatherings in M'lang.</p></div>
       <div><h2>Explore</h2><a href="menu.html">Food highlights</a><a href="private-events.html">Private events</a><a href="contact.html">Visit / Book</a></div>
-      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://www.google.com/maps/search/?api=1&query=Yaelitos%20Rizal%20St.%20Poblacion%20A%20M%27lang%209402" target="_blank" rel="noopener">Get directions</a></div>
+      <div><h2>Visit</h2><p data-config="business.address">Rizal St., Poblacion A, M'lang, Philippines 9402</p><a data-config-href="business.directionsUrl" href="https://maps.app.goo.gl/E2DxXaYfcfcTgu41A" target="_blank" rel="noopener">Get directions</a></div>
       <div><h2>Connect</h2><a data-config-href="business.phoneHref" href="tel:+639120593992"><span data-config="business.phoneDisplay">0912-059-3992</span></a><a data-config-href="facebook.messengerUrl" href="https://m.me/61557367387632" target="_blank" rel="noopener">Facebook Messenger</a><a data-config-href="facebook.pageUrl" href="https://www.facebook.com/profile.php?id=61557367387632" target="_blank" rel="noopener">Official Facebook page</a></div>
     </div>
     <div class="container footer-bottom"><span>© 2026 Yaelitos</span><a href="privacy.html">Booking privacy</a><span>Requests are confirmed only after Yaelitos replies.</span></div>
